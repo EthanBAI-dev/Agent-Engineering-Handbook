@@ -1,19 +1,24 @@
 # Agent Engineering Handbook
 
-> AI Agent 使用与工程化手册 —— 面向 Claude Code / Codex / Gemini CLI 等编码 Agent 的实战技巧专题。
+> 帮普通人和小团队，用 AI Agent 做出真正能用的产品。
 
-这是一个**博文专题的写作仓库**：先以 Markdown 沉淀内容，再输出成博客 / 电子书 / 分享稿。
-仓库同时收录「官方一手资料索引」和「配图方法论」，让每篇文章都有据可查、有图可看。
+这是一个**内容生产仓库**：先以 Markdown 沉淀，再输出成博客 / 视频 / 电子书。
+
+三个支柱：**AI 编程与 Agent** · **AI 做网站和数字产品** · **AI 接单与一人公司**。
+
+内容按 **6 : 3 : 1** 组织——六成流量内容让人看到，三成项目实测让人相信，
+一成系统深度沉淀成资产。核心产能模型是**一次真实实验派生七条内容**。
 
 ## 从这里开始
 
 | 文档 | 作用 |
 | --- | --- |
-| [`docs/00-plan.md`](docs/00-plan.md) | **专题总计划**：定位、栏目、里程碑、节奏、质量门禁、度量 |
+| [`docs/00-plan.md`](docs/00-plan.md) | **总计划 v2**：定位、三支柱、里程碑、产能模型、风险 |
+| [`docs/07-content-strategy.md`](docs/07-content-strategy.md) | **内容策略**：6:3:1 配比、五个标题公式、一次实验七条内容、负面清单 |
 | [`docs/01-sources.md`](docs/01-sources.md) | **资料源清单**：哪里拿最官方、最优秀的文档，以及如何持续追踪更新 |
 | [`docs/02-visual-system.md`](docs/02-visual-system.md) | **配图体系**：图怎么选、用什么工具做、视觉规范与导出流程 |
 | [`docs/03-writing-style.md`](docs/03-writing-style.md) | **写作规范**：结构、语气、术语表、代码与命令的呈现约定 |
-| [`docs/04-outline.md`](docs/04-outline.md) | **选题大纲**：5 个模块、24 篇文章的排期表 |
+| [`docs/04-outline.md`](docs/04-outline.md) | **选题大纲 v2**：10 个母实验，每个派生 7 条内容 |
 | [`docs/05-creators.md`](docs/05-creators.md) | **创作者清单**：YouTube / Bilibili / X 各 10 位，附核实流程 |
 | [`docs/06-video-workflow.md`](docs/06-video-workflow.md) | **视频工作流**：文章→脚本→录制→剪辑→分发的完整链路 |
 | [`references/`](references/) | **官方文档本地镜像**（1300+ 页），`bash scripts/fetch-docs.sh` 一键重建 |
@@ -51,4 +56,8 @@ make clip       # 合成 60s 竖屏视频（需完整版 ffmpeg）
 
 ## 状态
 
-🚧 筹备中 —— 当前处于 M0 阶段（见 [`docs/00-plan.md`](docs/00-plan.md) 里程碑表）。
+M0 基建**已完成**：7 份方法论文档、模板、1300 页官方文档离线镜像、
+配图与视频工具链、第 01 篇样板（双版本）。
+
+下一步 **M1**：母实验 A「用 AI 复刻网站并上线」，派生 7 条内容，
+验证「一次实验七条内容」的产能模型跑不跑得通。
