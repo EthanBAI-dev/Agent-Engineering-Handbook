@@ -1,0 +1,7 @@
+.DS_Store
+node_modules/
+.venv/
+*.log
+.cache/
+# 图形源文件的临时导出
+assets/**/*.tmp.*
