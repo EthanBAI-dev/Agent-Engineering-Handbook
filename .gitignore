@@ -5,3 +5,10 @@ node_modules/
 .cache/
 # 图形源文件的临时导出
 assets/**/*.tmp.*
+
+# 视频原始素材不入库（在 shotlist.md 里记路径）
+*.mp4
+*.mov
+*.wav
+*.aac
+video/raw/

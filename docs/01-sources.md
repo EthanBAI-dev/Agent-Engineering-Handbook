@@ -3,6 +3,18 @@
 > 最后更新：2026-09-07
 > **本仓库的引用铁律**：结论优先引用 T1（一手官方），T2 用于补充视角，T3 只作为线索不作为论据。
 
+## 📁 已有本地镜像
+
+上述 T1/T2 中可抓取的部分**已镜像到 [`references/`](../references/)**（约 1300 页 Markdown），
+用 `bash scripts/fetch-docs.sh` 可随时重建/更新。写作时优先本地检索：
+
+```bash
+rg -n "context window" references/anthropic-claude-code --type md
+```
+
+被网络策略拦截、尚未镜像的源（Anthropic 工程博客、OpenAI 官方文档站等）见
+[`references/README.md`](../references/README.md) 的「未能抓取的源」。
+
 ## 分级标准
 
 | 级别 | 含义 | 可信度 | 在文章里的用法 |
