@@ -1,0 +1,15 @@
+flowchart LR
+    subgraph Y["你加了那句话"]
+        direction LR
+        Y1["它改完"] --> Y2["它自己跑测试"] --> Y3["红了它自己改"] --> Y4["绿了才叫你"] --> Y5["你看一眼"]:::ok
+    end
+
+    subgraph N["你没加那句话"]
+        direction LR
+        N1["它改完"] --> N2["你看"]:::you --> N3["你说不对"]:::you --> N4["它再改"] --> N5["你再看"]:::you --> N6["……"]:::you
+    end
+
+    classDef you fill:#FEF2F2,stroke:#DC2626,color:#7F1D1D,rx:8,ry:8
+    classDef ok  fill:#ECFDF5,stroke:#059669,color:#065F46,rx:8,ry:8
+    classDef d   fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,rx:8,ry:8
+    class N1,N4,Y1,Y2,Y3,Y4 d
