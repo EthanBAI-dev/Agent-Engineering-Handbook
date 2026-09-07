@@ -1,0 +1,24 @@
+flowchart TB
+    subgraph GOOD["✅ 有可自跑的检查"]
+        direction TB
+        G1["Agent 干活"] --> G2["跑测试 / 构建 / 截图对比"]
+        G2 -->|"失败：读到具体报错"| G1
+        G2 -->|"通过"| G3["交付 + 出示证据"]
+        G3 --> G4["你只审查结果"]:::ok
+        G5["瓶颈 = 检查的质量<br/>你可以走开"]:::note
+    end
+
+    subgraph BAD["❌ 没有可自跑的检查"]
+        direction TB
+        B1["Agent 干活"] --> B2["'看起来做完了'"]
+        B2 --> B3["等你来看"]:::human
+        B3 -->|"发现问题"| B4["你写反馈"]:::human
+        B4 --> B1
+        B5["瓶颈 = 你的注意力<br/>你必须全程盯着"]:::note
+    end
+
+    classDef ok    fill:#ECFDF5,stroke:#059669,color:#065F46,rx:8,ry:8
+    classDef human fill:#FEF2F2,stroke:#DC2626,color:#7F1D1D,rx:8,ry:8
+    classDef note  fill:#FFFFFF,stroke:#94A3B8,color:#334155,stroke-dasharray:4 3,rx:8,ry:8
+    classDef box   fill:#EFF6FF,stroke:#2563EB,color:#1E3A8A,rx:8,ry:8
+    class B1,B2,G1,G2,G3 box

@@ -1,0 +1,10 @@
+flowchart TB
+    P["你的提示词"]:::edge --> G
+    G["① 收集上下文<br/>搜索 · 读文件 · 查文档"]:::stage --> A
+    A["② 采取行动<br/>编辑 · 执行命令 · 调工具"]:::stage --> V
+    V["③ 验证结果<br/>跑测试 · 看构建 · 对截图"]:::stage
+    V -->|"没过就回到 ①"| G
+    V ==>|"通过"| D["交付"]:::edge
+
+    classDef stage fill:#2563EB,stroke:#1E40AF,color:#ffffff,rx:10,ry:10,font-size:26px
+    classDef edge  fill:#FFFFFF,stroke:#CBD5E1,color:#0F172A,rx:10,ry:10,font-size:24px

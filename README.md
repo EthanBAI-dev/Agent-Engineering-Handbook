@@ -33,6 +33,15 @@
     └── covers/      # 封面图
 ```
 
+## 常用命令
+
+```bash
+make docs       # 抓取/更新 references/ 官方文档镜像
+make diagrams   # assets/diagrams/*.mmd -> .svg
+make frames     # 竖屏切片帧 1080x1920
+make clip       # 合成 60s 竖屏视频（需完整版 ffmpeg）
+```
+
 ## 约定
 
 - **源文件必须入库**：每张图都要能被后人改，`.mmd`/`.excalidraw`/`.d2` 与导出物一起提交。

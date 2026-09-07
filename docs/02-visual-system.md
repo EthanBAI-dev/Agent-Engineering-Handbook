@@ -59,14 +59,15 @@ class P,V primary
 class T,O muted
 ```
 
-**批量导出 SVG**（CI 或本地都能跑）：
+**批量导出 SVG** —— 本仓库已封装成脚本：
 
 ```bash
 npm i -g @mermaid-js/mermaid-cli
-mmdc -i assets/diagrams/agent-loop.mmd \
-     -o assets/diagrams/agent-loop.svg \
-     -t neutral -b transparent
+make diagrams          # = bash scripts/render-diagrams.sh
 ```
+
+脚本会读 `assets/diagrams/_puppeteer.json` 指定 Chromium 路径（无头环境必需），
+把 `assets/diagrams/*.mmd` 全部渲染成透明底 SVG。
 
 `-b transparent` 很关键：透明底才能同时适配亮色和暗色页面。
 
@@ -97,6 +98,10 @@ d2 --theme 300 --dark-theme 200 diagram.d2 diagram.svg   # 一次导出双主题
 ### L4 · HTML + CSS + Playwright —— 需要像素级控制时
 
 数据图、对比卡片、带真实字体排版的图，用网页画然后截图，比设计工具更可控、可批量、可复现。
+
+本仓库已有一个更轻的实现：`scripts/render-frames.sh` 直接调用 Chromium 的
+`--screenshot`，不装 Playwright 也能出图（见 `assets/diagrams/src/clip-01.html`）。
+需要更复杂的交互时再上 Playwright：
 
 ```js
 // scripts/shoot.mjs

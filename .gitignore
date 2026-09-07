@@ -12,3 +12,4 @@ assets/**/*.tmp.*
 *.wav
 *.aac
 video/raw/
+build/

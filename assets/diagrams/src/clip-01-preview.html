@@ -1,0 +1,39 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>clip-01 预览</title>
+<style>
+  body{margin:0;background:#111827;color:#94A3B8;font:14px/1.6 system-ui;
+       display:flex;flex-direction:column;align-items:center;gap:16px;padding:24px}
+  #stage{width:405px;height:720px;border-radius:20px;overflow:hidden;
+         box-shadow:0 20px 60px rgba(0,0,0,.5);background:#F8FAFC}
+  #stage img{width:100%;height:100%;object-fit:contain;display:block}
+  .bar{width:405px;height:4px;background:#334155;border-radius:2px;overflow:hidden}
+  .bar i{display:block;height:100%;width:0;background:#2563EB}
+  button{background:#2563EB;color:#fff;border:0;border-radius:8px;padding:10px 20px;font-size:14px;cursor:pointer}
+</style>
+<div id="stage"><img id="f" src="../clip-01/frame-01.png"></div>
+<div class="bar"><i id="p"></i></div>
+<div><span id="t">0.0</span>s / 60.0s · 第 <span id="n">1</span>/6 帧</div>
+<button onclick="play()">重播</button>
+<script>
+  // 与 posts/01-agent-loop/video/clip-01.md 的分镜表一致
+  const DUR = [7, 13, 14, 14, 8, 4];
+  const total = DUR.reduce((a, b) => a + b, 0);
+  const img = document.getElementById('f');
+  let timer;
+  function play() {
+    clearInterval(timer);
+    let t = 0;
+    timer = setInterval(() => {
+      t += 0.1;
+      if (t > total) { clearInterval(timer); return; }
+      let acc = 0, idx = 0;
+      for (let i = 0; i < DUR.length; i++) { acc += DUR[i]; if (t <= acc) { idx = i; break; } }
+      img.src = `../clip-01/frame-0${idx + 1}.png`;
+      document.getElementById('p').style.width = (t / total * 100) + '%';
+      document.getElementById('t').textContent = t.toFixed(1);
+      document.getElementById('n').textContent = idx + 1;
+    }, 100);
+  }
+  play();
+</script>

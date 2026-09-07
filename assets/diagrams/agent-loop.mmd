@@ -1,0 +1,23 @@
+flowchart LR
+    P["你的提示词"] --> G
+
+    subgraph LOOP["Agent 循环 · 三个阶段反复交织"]
+        direction LR
+        G["① 收集上下文<br/><span>搜索 · 读文件 · 查文档</span>"]
+        A["② 采取行动<br/><span>编辑 · 执行命令 · 调工具</span>"]
+        V["③ 验证结果<br/><span>跑测试 · 看构建 · 对截图</span>"]
+        G --> A --> V
+        V -->|"还没过"| G
+    end
+
+    V ==>|"检查通过"| D["交付"]
+
+    I1["干预点 A<br/>收窄范围"]:::hint -.-> G
+    I2["干预点 B<br/>Esc 尽早纠偏"]:::hint -.-> A
+    I3["干预点 C<br/>给一个它能自己跑的检查"]:::hint -.-> V
+
+    classDef stage fill:#2563EB,stroke:#1E40AF,color:#ffffff,rx:8,ry:8
+    classDef edge  fill:#F8FAFC,stroke:#CBD5E1,color:#0F172A,rx:8,ry:8
+    classDef hint  fill:#FFFBEB,stroke:#D97706,color:#92400E,stroke-dasharray:4 3,rx:8,ry:8
+    class G,A,V stage
+    class P,D edge

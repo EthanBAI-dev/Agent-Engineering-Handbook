@@ -1,0 +1,105 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>clip-01 frames</title>
+<style>
+  :root{
+    --ink:#0F172A; --muted:#64748B; --line:#CBD5E1; --surface:#F8FAFC;
+    --primary:#2563EB; --accent:#7C3AED; --warn:#D97706; --danger:#DC2626; --ok:#059669;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1080px;height:1920px;background:var(--surface);color:var(--ink);
+       font:400 34px/1.55 "Noto Sans SC","PingFang SC","Microsoft YaHei",system-ui,sans-serif;
+       display:flex;flex-direction:column;overflow:hidden}
+  .frame{display:none;flex:1;flex-direction:column;justify-content:center;padding:120px 80px 200px}
+  .frame.on{display:flex}
+  .kicker{font-size:28px;letter-spacing:.18em;color:var(--primary);font-weight:700;margin-bottom:36px}
+  h1{font-size:86px;line-height:1.25;font-weight:800;letter-spacing:-.01em}
+  h1 em{font-style:normal;color:var(--primary)}
+  h1 .hl{background:linear-gradient(transparent 62%, #FDE68A 62%)}
+  h2{font-size:58px;line-height:1.35;font-weight:700;margin-bottom:48px}
+  p{font-size:38px;color:var(--muted);margin-top:36px}
+  .center{justify-content:center}
+  .fig{background:#fff;border:2px solid var(--line);border-radius:24px;padding:40px 32px;
+       margin:auto 0;display:flex;align-items:center;justify-content:center;max-height:1120px}
+  .fig img{display:block;width:auto;max-width:100%;max-height:1040px}
+  ol{margin-top:20px;list-style:none;counter-reset:n}
+  ol li{counter-increment:n;position:relative;padding:34px 0 34px 104px;border-bottom:2px solid var(--line);font-size:42px;font-weight:600}
+  ol li:last-child{border-bottom:0}
+  ol li::before{content:counter(n);position:absolute;left:0;top:30px;width:64px;height:64px;border-radius:50%;
+      background:var(--primary);color:#fff;font-size:34px;font-weight:700;display:grid;place-items:center}
+  ol li span{display:block;font-size:30px;font-weight:400;color:var(--muted);margin-top:8px}
+  .cmp{display:grid;gap:36px;margin-top:20px}
+  .card{border-radius:20px;padding:40px;border:3px solid}
+  .card.bad{border-color:#FECACA;background:#FEF2F2}
+  .card.good{border-color:#A7F3D0;background:#ECFDF5}
+  .card .tag{font-size:30px;font-weight:800;letter-spacing:.06em;margin-bottom:20px}
+  .card.bad .tag{color:var(--danger)} .card.good .tag{color:var(--ok)}
+  .card code{display:block;font:500 32px/1.6 "JetBrains Mono",ui-monospace,monospace;color:var(--ink);white-space:pre-wrap}
+  .foot{position:absolute;bottom:96px;left:80px;right:80px;display:flex;justify-content:space-between;
+        font-size:26px;color:var(--muted);border-top:2px solid var(--line);padding-top:28px}
+  .big{font-size:120px;font-weight:800;line-height:1.1;letter-spacing:-.02em}
+  .sub{font-size:44px;color:var(--muted);margin-top:44px;font-weight:500}
+</style>
+
+<div class="frame" data-f="1">
+  <div class="kicker">AGENT 使用技巧 · 01</div>
+  <div style="margin:auto 0">
+    <h1>你没给它<span class="hl">一个能自己跑的检查</span>，<br><em>你就是那个验证循环。</em></h1>
+    <p>—— 这是「盯着它干活」和「可以走开」的分界线</p>
+  </div>
+</div>
+
+<div class="frame" data-f="2">
+  <div class="kicker">编码 AGENT 在循环什么</div>
+  <h2>三个阶段，反复交织</h2>
+  <div class="fig" style="padding:56px 40px"><img src="../agent-loop-vertical.svg" alt=""></div>
+  <p>官方说法：收集上下文 → 采取行动 → 验证结果</p>
+</div>
+
+<div class="frame" data-f="3">
+  <div class="kicker" style="position:absolute;top:120px;left:80px">所以你只有三个干预点</div>
+  <ol>
+    <li>入口：收窄范围<span>别说「调研一下」，说清楚在哪找、找什么</span></li>
+    <li>中途：尽早按 Esc<span>同一个问题纠正超过两次，就该 /clear 重开</span></li>
+    <li>出口：给一个它能自己跑的检查<span>测试、构建、截图对比——任何返回通过/失败的东西</span></li>
+  </ol>
+</div>
+
+<div class="frame" data-f="4">
+  <div class="kicker" style="position:absolute;top:120px;left:80px">出口这一步，差别最大</div>
+  <div class="cmp">
+    <div class="card bad">
+      <div class="tag">✕ 你成了验证循环</div>
+      <code>实现一个校验邮箱的函数</code>
+    </div>
+    <div class="card good">
+      <div class="tag">✓ 循环自己闭合</div>
+      <code>写 validateEmail 函数。
+用例：a@b.com 通过，
+invalid 不通过，a@.com 不通过。
+实现完把测试跑一遍。</code>
+    </div>
+  </div>
+  <p>它会自己跑、自己读报错、自己改到过为止</p>
+</div>
+
+<div class="frame" data-f="5">
+  <div class="kicker" style="position:absolute;top:120px;left:80px">记住三句话</div>
+  <div class="cmp" style="margin-top:40px">
+    <div class="card good"><div class="tag">01</div><div style="font-size:40px;font-weight:600">让它有东西可验证</div></div>
+    <div class="card good"><div class="tag">02</div><div style="font-size:40px;font-weight:600">让它出示证据，别信「已完成」</div></div>
+    <div class="card good"><div class="tag">03</div><div style="font-size:40px;font-weight:600">验证不了的，就别合并</div></div>
+  </div>
+</div>
+
+<div class="frame center" data-f="6">
+  <div style="text-align:center">
+    <div class="big">完整版<br>在文章里</div>
+    <div class="sub">Agent Engineering Handbook<br>github.com/EthanBAI-dev/Agent-Engineering-Handbook</div>
+  </div>
+</div>
+
+<script>
+  const f = new URLSearchParams(location.search).get('frame') || '1';
+  document.querySelector(`.frame[data-f="${f}"]`)?.classList.add('on');
+</script>
