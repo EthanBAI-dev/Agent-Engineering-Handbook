@@ -1,6 +1,6 @@
 ---
 name: langgraph-course-lesson
-description: Write or rewrite one lesson of the Chinese zero-background LangGraph course (《LangGraph 三十讲》) as a source-order-first runnable tutorial. Use when drafting, rewriting, auditing or improving a lesson under docs/learn-langgraph/LangGraph三十讲/, when planning the course spine or concept ownership, when doing a jargon or readability audit, when planning figures, or when reviewing a batch of the course's Markdown articles. Preserves the official notebook teaching order, then applies zero-background, experiment, code and figure rules.
+description: Write or rewrite one lesson of the Chinese zero-background LangGraph course (《LangGraph 三十一讲》) as a source-order-first runnable tutorial. Use when drafting, rewriting, auditing or improving a lesson under docs/learn-langgraph/LangGraph三十一讲/, when planning the course spine or concept ownership, when doing a jargon or readability audit, when planning figures, or when reviewing a batch of the course's Markdown articles. Preserves the official notebook teaching order, then applies zero-background, experiment, code and figure rules.
 ---
 
 # LangGraph 课程写作 Skill
@@ -271,7 +271,7 @@ docs/learn-langgraph/参考资料/课程脉络与概念归属表.md
    **单篇任务也必须读前后两讲的源 notebook。**
 2. 直接看 `.ipynb` 单元格顺序，再用 `参考资料/原始素材大纲.md` 查关键词。
    不能只看自动提取文本。
-3. **保留原稿。** 正式文章在 `docs/learn-langgraph/LangGraph三十讲/`，
+3. **保留原稿。** 正式文章在 `docs/learn-langgraph/LangGraph三十一讲/`，
    旧稿在 `草稿/`。改写前先确认改的是哪一篇，**没有明确授权不要整篇覆盖**。
 4. 按源顺序列文章骨架，逐项标出保留、移动、删除、补台阶、实验和配图。
    **先处理课程错位，再处理句子与术语。**
@@ -292,7 +292,7 @@ docs/learn-langgraph/参考资料/课程脉络与概念归属表.md
 | --- | --- |
 | 唯一结构依据 | `docs/learn-langgraph/参考资料/课程脉络与概念归属表.md` |
 | 环境（唯一处） | `docs/learn-langgraph/课程总纲/README.md` |
-| 正式文章 | `docs/learn-langgraph/LangGraph三十讲/第NN课-*.md` |
+| 正式文章 | `docs/learn-langgraph/LangGraph三十一讲/第NN课-*.md` |
 | 课程代码 | `docs/learn-langgraph/课程代码/lessons/lessonNN_*.py` |
 | 公用函数 | `docs/learn-langgraph/课程代码/lgkit/` |
 | 原稿（不覆盖） | `docs/learn-langgraph/草稿/` |
