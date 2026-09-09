@@ -397,19 +397,64 @@ pip install -r requirements.txt
 **为什么不复用前面那个 `.venv`？** 因为官方仓库锁定了一批版本，混在一起容易打架。
 一个项目一个抽屉，这是规矩。
 
-## 三个钥匙（Key）
+## 钥匙（Key）：从这里开始才要花钱
 
-这时候才开始需要花钱调模型。三个钥匙，重要性不一样：
+前面所有内容都不花钱。**从这一步起，你需要一个能调大模型的钥匙。**
+
+本课程默认用 **DeepSeek**：国内可直连、便宜、支持工具调用，
+后面讲的每一个能力它都能跑。
 
 | 钥匙 | 干什么 | 必需吗 | 去哪申请 |
 | --- | --- | --- | --- |
-| `OPENAI_API_KEY` | 调大模型，课程的发动机 | **必需** | platform.openai.com |
-| `LANGSMITH_API_KEY` | 看清每一步到底调了什么，调试全靠它 | **强烈建议** | smith.langchain.com，有免费额度 |
-| `TAVILY_API_KEY` | 让 Agent 能联网搜索 | 学到第四模块才用 | tavily.com |
+| `DEEPSEEK_API_KEY` | 调大模型，课程的发动机 | **必需** | platform.deepseek.com |
+| `TAVILY_API_KEY` | 让程序能联网搜索 | 学到多角色协作那几讲才用 | tavily.com |
+| `LANGSMITH_API_KEY` | 看清每一步到底调了什么，调试全靠它 | 建议，有免费额度 | smith.langchain.com |
 
-课程的每个文件第一次运行时会弹出输入框让你贴钥匙，**贴一次就行，不用改代码**。
+### 装客户端
 
-> **钥匙等于钱，别把它贴进任何会上传的文件里。** 尤其别提交到 GitHub。
+```
+pip install -U langchain-deepseek
+```
+
+### 把钥匙告诉程序
+
+**不要把钥匙写进任何代码文件。** 写进去就可能被你自己传到网上。
+
+Windows（当前这个终端窗口有效）：
+
+```
+$env:DEEPSEEK_API_KEY = "你的钥匙"
+```
+
+Mac：
+
+```
+export DEEPSEEK_API_KEY="你的钥匙"
+```
+
+**关掉终端就失效，下次要重新设。** 想一劳永逸，就设成系统环境变量。
+
+验证：
+
+```
+python -c "import os; print('有钥匙' if os.environ.get('DEEPSEEK_API_KEY') else '没读到')"
+```
+
+### 想换成别的模型
+
+代码里只有一行跟模型有关，换 OpenAI 就是把那一行换掉：
+
+```python
+from langchain_deepseek import ChatDeepSeek        # DeepSeek
+model = ChatDeepSeek(model="deepseek-chat")
+
+from langchain_openai import ChatOpenAI            # 换成 OpenAI 就这两行
+model = ChatOpenAI(model="gpt-4o")
+```
+
+**其余代码一个字都不用改。** 后面每一讲都保持这个性质。
+
+> **钥匙等于钱。** 别贴进代码、别提交到 GitHub、别发在聊天框里。
 
 ## 把图画出来看
 
