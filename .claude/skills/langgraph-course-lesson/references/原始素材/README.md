@@ -46,10 +46,18 @@
 - [x] 导读长度冲突已裁决：**采用上传规范的 2–3 句 60–120 字**，
       撤销本 skill 自创的「导读只有一行」——它与 check-readability.mjs 冲突，
       留着会永远刷 WARN
-- [ ] `mobile-figures.md` 与现有 `配图规则.md` 合并去重
-- [ ] `article-shape.md` 的「自然骨架」与「常见失败模式」并入 SKILL.md 第四节
-- [ ] `data-figures.md` 按上表改写成 LangGraph 版
-- [ ] `report-template.md` 适配后提升为正式参考文件
+- [x] `mobile-figures.md` → 已并入 `references/配图规则.md`（第四、五、九节：
+      窄屏验收基准与字号公式、重排不能删知识图形、桌面横表的语义转置、
+      卡片版三条约束、31 讲的课程位置图），原文件不再单独保留
+- [x] `article-shape.md` → 已并入 SKILL.md 第四节（自然骨架、内部检查点表、
+      知识点主线、七条常见失败模式）
+- [x] `data-figures.md` → 已改写为 `references/数据图规则.md`。
+      删去声谱图／FFT／色标／栅格嵌 SVG 等音频专有内容，
+      保留「必须来自真实计算」「出现数值就要有刻度」「图注写正文没写的」三条主干，
+      新增本课程的五类数据图对照表与「字数≠词元数」的单位提醒
+- [x] `report-template.md` → 已改写为 `references/审校报告模板.md`，扩为 A–M 节。
+      新增 G 节（概念归属核对，越界即 P0）与 H 节
+      （正文每个数字必须标出它在脚本输出的第几行，找不到出处直接判 0）
 
 ## 迁移的验收结果
 
