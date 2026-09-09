@@ -112,6 +112,74 @@ LangGraph 的复杂度只在需要控制流时才回本。
 
 ---
 
+## 2026-09-09 · Q&A · 想搞多 Agent，学习路线是什么？
+
+**问题**
+
+目标是多 agent 系统，路线怎么排？
+
+**先记一条反直觉的结论**
+
+多 agent 不是起点是终点。**大多数多 agent 项目失败不是编排写得差，是根本不该拆**——
+agent 之间传的是压缩过的文本，上下文一路损耗，一个强单体 + 好的上下文管理
+常常打得过五个协作的弱 agent。所以路线前半段全在练单体，这不是绕路。
+
+**三层地基（跳过必翻车）**
+
+| 层 | 内容 | 为什么是前置 |
+| --- | --- | --- |
+| 状态 | reducer、多 schema 隔离 | 多 agent 本质是**多个写者写同一份 state**，reducer 决定它们打不打架 |
+| 控制流 | 条件边、`Command`、子图、`Send` | 「交接」不是概念，就是 `Command(goto=...)` 一行 |
+| 可观测 | LangSmith 追踪 | 单 agent 出错还能猜，五个 agent 出错不看 trace 就是抓瞎 |
+
+**路线表**
+
+| 阶段 | 学什么 | 资源 |
+| --- | --- | --- |
+| 0 | 单 agent 打穿：ReAct、checkpointer、interrupt | Academy M1–M3 |
+| 1 | 并行 + 合流 | M4 `parallelization` |
+| 2 | **子图（分水岭）** | M4 `sub-graph` |
+| 3 | `Send` 动态扇出 map-reduce | M4 `map-reduce` |
+| 4 | 完整多角色系统 | M4 `research-assistant` |
+| 5 | Supervisor 架构 | `langgraph-supervisor` |
+| 6 | Swarm 架构 | `langgraph-swarm-py` |
+| 7 | Deep Agents（规划 + 子 agent + 虚拟文件系统） | `langchain-ai/deepagents` |
+| 8 | 评测 | Academy `Deep Research with LangGraph` |
+
+**阶段 2 是分水岭**：想通「一个 agent 就是一个能当节点用的子图」，后面全是配方问题。
+
+**Supervisor vs Swarm**
+
+- Supervisor：中央主管路由，每轮回主管。**准但慢**（多一次 LLM 调用），职责清楚。**先学这个**，好定位问题。
+- Swarm：agent 之间直接交接（`Command(goto=..., graph=Command.PARENT)`）。**快、LLM 调用少**
+  （有团队实测端到端降约 40%），但错了不好查。
+- 判据：**瓶颈是延迟 → swarm；瓶颈是路由错 → supervisor。**
+
+**Deep Agents**
+
+官方重型 agent 骨架，跑在 LangGraph runtime 上，打包了规划（`write_todos`）、子 agent、
+**虚拟文件系统**。第三样最关键：用文件卸载大块结果，子 agent 之间传引用而非对话历史，
+正好治上面说的上下文损耗。任务步数 >10、需长期规划的场景直接上，别从零编排。
+
+**四个坑**
+
+1. 过早拆分——先把单 agent 做到明显不够用再拆。
+2. 所有 agent 共写一份大 state——用多 schema 隔离，各看各的。
+3. 靠对话历史传中间结果——大结果落文件/store，只传引用。
+4. 没 baseline 就说「多 agent 更好」——拆之前先建评测。
+
+**结论**
+
+> **多 agent = 子图 + reducer + Command 交接，没有第四样东西。**
+> 三样都在 Module 4，M1–M3 是为了让你看懂它们。先把单 agent 榨干，再拆。
+
+**待查**
+
+- `langgraph-supervisor` / `langgraph-swarm-py` 在 1.x 下的维护状态与最新用法，学到阶段 5 时实跑确认。
+- Deep Agents 的虚拟文件系统与 LangGraph Store（Module 5 长期记忆）是什么关系，能否互替？
+
+---
+
 ## 模板（复制下面这段开新条目）
 
 ```
