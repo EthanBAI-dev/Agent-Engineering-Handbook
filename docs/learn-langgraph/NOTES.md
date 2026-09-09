@@ -68,6 +68,50 @@
 
 ---
 
+## 2026-09-09 · Q&A · 学 LangChain 还是学 LangGraph？
+
+**问题**
+
+两个库到底该学哪个，还是都要学？
+
+**结论（不是二选一）**
+
+2025-10 两库同发 1.0 之后，它们是一层套一层的关系，不是并列选项：
+
+```
+你的 Agent → langchain.agents.create_agent（高层 ReAct 封装）
+           → LangGraph durable runtime（状态/存档/中断/恢复）
+```
+
+`create_agent` 就跑在 LangGraph 的 runtime 上；原 `langgraph.prebuilt` 废弃后
+能力反向搬进了 `langchain.agents`。**两边在合流，不在竞争。**
+
+**所以顺序是：LangGraph 优先，LangChain 按需查。**
+
+| 阶段 | 学什么 | 投入 |
+| --- | --- | --- |
+| 1 | LangGraph 裸图：State / 条件边 / reducer / checkpointer / interrupt | 1–2 周 |
+| 2 | LangChain 接口层：`ChatOpenAI`、`@tool`、`MessagesState`、结构化输出 | 边做边查，不专门学 |
+| 3 | `create_agent` | 半天，本质是把你已会手写的循环包一层 |
+| 4 | LangSmith 追踪 + 评测 | 越早接越好 |
+
+理由：`create_agent` 是一行搞定的黑盒，但只要碰到**人工审批、上下文控制、并行/多智能体、
+调试跑飞的 Agent**，就必须下沉到图这一层。**先学黑盒再拆黑盒，比先懂机制再用封装痛苦得多。**
+
+**例外**
+
+需求只是「能调工具的聊天机器人」→ 直接 `create_agent`，别学图。
+LangGraph 的复杂度只在需要控制流时才回本。
+
+> LangChain 是**接口层**，查着用就行；LangGraph 是**运行时**，是真正要理解的东西。
+> 学 LangGraph 顺手就把 LangChain 用会了，反过来不成立。
+
+**待查**
+
+- `create_agent` 的中间件/钩子机制能覆盖到哪一步？超出后是不是只能改回裸图重写？（学完 Module 3 再验证）
+
+---
+
 ## 模板（复制下面这段开新条目）
 
 ```
