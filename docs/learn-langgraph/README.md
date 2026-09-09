@@ -7,7 +7,9 @@
 | --- | --- |
 | [`00-resources.md`](00-resources.md) | 欧美课程调研与横向对比，以及为什么选这条主线 |
 | [`01-syllabus.md`](01-syllabus.md) | 官方大纲逐节还原 + 我的 4 周排期表 |
-| [`lesson-01.md`](lesson-01.md) | **手把手第 1 课**：环境 + 最小图 + 记忆与中断 |
+| [`lesson-00-setup.md`](lesson-00-setup.md) | **第 0 课**：电脑上什么都没有时，装什么、在哪跑、怎么一步步操作 |
+| [`lesson-01.md`](lesson-01.md) | **第 1 课**：最小图、条件边、reducer、存档与中断 |
+| [`course-dev/`](course-dev/) | 课程骨架、概念归属地图、交接清单（规划用，不面向读者） |
 | [`NOTES.md`](NOTES.md) | 学习笔记：每节的总结、卡住的问题、踩过的坑 |
 | [`code/`](code/) | 每课配套代码，已在 Python 3.11 + langgraph 1.2.11 实跑通过 |
 

@@ -10,24 +10,13 @@
 
 ---
 
-## Step 0 · 装环境（5 分钟）
+## Step 0 · 确认你已经准备好
 
-```bash
-python3 --version          # 需要 3.11 / 3.12 / 3.13
-python3 -m venv .venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
-pip install -U langgraph
-```
+这一课假设你已经做完了 [`lesson-00-setup.md`](lesson-00-setup.md)。
 
-验证：
+开始前只确认一件事——**终端里那行字前面有没有 `(.venv)`。**
 
-```bash
-python -c "from langgraph.graph import StateGraph; print('ok')"
-```
-
-打印 `ok` 就成了。**本轨道验证过的版本是 langgraph 1.2.11 + Python 3.11。**
-
-> 先别急着装 `langchain-openai`、配 Key。第 1、2 课都用不上。
+没有就先激活环境。装什么、怎么装、报错怎么办，全在第 0 课，这里不重复。
 
 ---
 
@@ -193,27 +182,10 @@ Module 3 的 `time-travel.ipynb` 讲的就是这个。
 现在你已经理解了 State / Node / Edge / Reducer / Checkpointer / interrupt。
 官方 Module 1 和 Module 2 的一大半你其实已经会了，去把剩下的补齐：
 
-```bash
-git clone https://github.com/langchain-ai/langchain-academy.git
-cd langchain-academy
-python3 -m venv lc-academy-env && source lc-academy-env/bin/activate
-pip install -r requirements.txt
-```
+到这一步需要第二套环境（官方课程仓库 + 三个 Key）。
+**装法在 [`lesson-00-setup.md`](lesson-00-setup.md) 最后一节「第二阶段环境」**，这里不重复。
 
-需要三个 Key：
-
-| Key | 干什么 | 必需吗 |
-| --- | --- | --- |
-| `OPENAI_API_KEY` | 调模型 | 是 |
-| `LANGSMITH_API_KEY` | 看每一步的调用链路，调试全靠它 | **强烈建议**，免费额度够学 |
-| `TAVILY_API_KEY` | 联网搜索工具 | Module 4 才用到 |
-
-再顺手把 Studio 跑起来，它能把图画出来、点着跑：
-
-```bash
-cd module-1/studio
-langgraph dev     # 打开 http://127.0.0.1:2024
-```
+装完你会多一个能把图画出来、点着跑的工具，理解「图」比读代码快得多。
 
 **下一节按 [`01-syllabus.md`](01-syllabus.md) 的排期走：Module 1 的 `chain` → `router` → `agent`。**
 那三节讲的是同一件事：把「路由」这条边接回它自己，就得到了一个 Agent。
