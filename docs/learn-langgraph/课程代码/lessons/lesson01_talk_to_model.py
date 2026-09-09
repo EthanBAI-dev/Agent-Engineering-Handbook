@@ -1,6 +1,6 @@
 """第 01 讲 · 让代码跟大模型说上话。
 
-需要钥匙。跑之前先设好（怎么设见 课程总纲/README.md）：
+需要钥匙。跑之前先设好（怎么设见 第 00 讲）：
 
     Windows:  $env:DEEPSEEK_API_KEY = "你的钥匙"
     Mac:      export DEEPSEEK_API_KEY="你的钥匙"
@@ -16,7 +16,7 @@ import sys
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 
 if not os.environ.get("DEEPSEEK_API_KEY"):
-    sys.exit("没读到 DEEPSEEK_API_KEY。先设好钥匙，见 课程总纲/README.md。")
+    sys.exit("没读到 DEEPSEEK_API_KEY。先设好钥匙，见 第 00 讲。")
 
 from langchain_deepseek import ChatDeepSeek  # noqa: E402
 
