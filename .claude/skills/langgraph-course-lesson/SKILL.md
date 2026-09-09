@@ -82,6 +82,9 @@ docs/learn-langgraph/参考资料/课程脉络与概念归属表.md
 
 **发布门槛：零基础读者理解度低于 8/10 就不发，总分再高也不发。**
 
+完整的读者画像、术语准入、开头规则、读者模拟七问见 `references/零基础规则.md`——**动笔前读一遍**。
+打分维度、权重与全部硬性门槛见 `references/rubric.md`。
+
 ---
 
 ## 二、写法硬规矩（优先级高于结构）
@@ -129,14 +132,17 @@ docs/learn-langgraph/参考资料/课程脉络与概念归属表.md
 
 ### 5. 导读要帮上理解，不是复述
 
+标题下放**两到三句、约 60 到 120 个汉字**的导读，依次交代：
+**现实问题是什么 — 会经过哪些核心概念 — 读完能判断什么**。
+
 **判据：把导读盖住再读正文，理解成本有没有变高？** 没变高就是废话。
 
-合格的导读给三样东西：这一讲的**主语和谓语**、一个**读者认得出的现象**、**选错了会怎样**。
-
-开头只有一行导读。**不要写「读完你能做到」那一行**——
-它和导读、小结互相复述，还占掉了开头最值钱的位置。
-
 **导读必须承接上一讲真正留下的那个问题**（见脉络表「交给下一讲」列），不许临场发挥。
+但**不能只写「接上一讲」**——读者可能没读过上一讲，那个问题要在这里重新说清楚。
+
+导读只介绍内容，**不介绍文章的内部结构**。不写「本讲分三部分」这类阅读说明。
+
+`scripts/check-readability.mjs` 会检查导读是否存在。
 
 ### 6. 标题也要有主语和谓语
 
@@ -283,10 +289,22 @@ docs/learn-langgraph/参考资料/课程脉络与概念归属表.md
    再写正文中的代码、输出与解释。
 6. 按源顺序成文。对照归属表，确认没有完整讲掉后面的内容。
 7. 内容未定稿只做桌面版图；定稿后再补窄屏版。
-8. 发布前扫描读者正文中的 `notebook|单元格|Module|官方课程|源课程`，命中必须清零。
-9. 最后重新对照源 notebook 逐项勾选，独立打分，列出仍未解决的风险。
+8. **跑机检，ERROR 必须清零：**
 
-**机器检查零错误只表示格式过关，不能证明课程顺序正确。**
+   ```bash
+   S=.claude/skills/langgraph-course-lesson/scripts
+   node $S/check-readability.mjs   docs/learn-langgraph/LangGraph三十一讲/
+   node $S/check-markdown-math.mjs docs/learn-langgraph/LangGraph三十一讲/
+   node $S/check-svg-mobile.mjs    <图片目录>      # 有图时
+   node $S/check-svg-card.mjs      <卡片图目录>    # 要发卡片时
+   ```
+
+   **WARN 不必清零，但每条都要给出保留理由。**
+9. 扫描读者正文中的 `notebook|单元格|Module|官方课程|源课程`，命中必须清零。
+10. 按 `references/rubric.md` 独立打分，列出仍未解决的风险。
+    **维度 1 低于 8 分、维度 2 或 5 低于 7 分、有未解决 P0，都不得发布。**
+
+**机器检查零错误只表示格式过关，不能证明课程顺序正确，也识别不了换个说法后的重复。**
 
 ---
 
@@ -301,8 +319,12 @@ docs/learn-langgraph/参考资料/课程脉络与概念归属表.md
 | 公用函数 | `docs/learn-langgraph/课程代码/lgkit/` |
 | 原稿（不覆盖） | `docs/learn-langgraph/草稿/` |
 | 学习笔记（只追加） | `docs/learn-langgraph/NOTES.md` |
-| 配图规则 | `.claude/skills/langgraph-course-lesson/references/配图规则.md` |
-| 零基础自检 | `.claude/skills/langgraph-course-lesson/references/零基础自检.md` |
+| **零基础规则**（动笔前必读） | `.claude/skills/langgraph-course-lesson/references/零基础规则.md` |
+| **评分表与发布门槛** | `.claude/skills/langgraph-course-lesson/references/rubric.md` |
+| 配图规则（做图前必读） | `.claude/skills/langgraph-course-lesson/references/配图规则.md` |
+| 机检脚本 | `.claude/skills/langgraph-course-lesson/scripts/*.mjs` |
+| 术语词典（按需扩充） | `.claude/skills/langgraph-course-lesson/references/terms-zh.json` |
+| 未适配的原稿 | `.claude/skills/langgraph-course-lesson/references/原始素材/` |
 
 ## 九、通用课程开发规则
 
