@@ -21,6 +21,7 @@
 | [`docs/04-outline.md`](docs/04-outline.md) | **选题大纲 v2**：10 个母实验，每个派生 7 条内容 |
 | [`docs/05-creators.md`](docs/05-creators.md) | **创作者清单**：YouTube / Bilibili / X 各 10 位，附核实流程 |
 | [`docs/06-video-workflow.md`](docs/06-video-workflow.md) | **视频工作流**：文章→脚本→录制→剪辑→分发的完整链路 |
+| [`docs/learn-langgraph/`](docs/learn-langgraph/) | **LangGraph 学习轨道**：欧美课程调研、官方大纲、手把手第 1 课、学习笔记 |
 | [`references/`](references/) | **官方文档本地镜像**（1300+ 页），`bash scripts/fetch-docs.sh` 一键重建 |
 | [`templates/`](templates/) | 文章模板、视频脚本模板、图表模板、Checklist |
 

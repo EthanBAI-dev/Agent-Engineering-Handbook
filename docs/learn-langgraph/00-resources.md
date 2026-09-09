@@ -1,0 +1,59 @@
+# 欧美 LangChain / LangGraph 教学资源调研
+
+调研时间：2026-09。筛选标准只有一条——**能不能手把手跟着敲**。
+纯讲概念、没有可运行代码仓库的，一律不收。
+
+## 横向对比
+
+| 资源 | 出品方 | 形式 | 时长 | 价格 | 手把手程度 | 适合阶段 |
+| --- | --- | --- | --- | --- | --- | --- |
+| **Introduction to LangGraph**（主线） | LangChain 官方 Academy | 视频 + 30 个 Jupyter notebook + LangGraph Studio | 约 15–20 h | 免费 | ★★★★★ 每节一个 notebook，代码全开源 | 入门到能上线 |
+| **AI Agents in LangGraph** | DeepLearning.AI（Harrison Chase + Tavily 创始人 Rotem Weiss） | 视频 + 网页内嵌 Notebook | 约 1.5 h | 免费 | ★★★★☆ 边看边改，但环境在网页里 | 开胃菜，建立直觉 |
+| **LangGraph Complete Course for Beginners** | freeCodeCamp（Vaibhav Mehra） | 单个长视频 | 3 h 10 m | 免费 | ★★★☆☆ 跟敲可以，但无配套仓库结构 | 查漏补缺 |
+| **Agentic AI using LangGraph** | freeCodeCamp | 长视频 + 项目 | 约 24 h | 免费 | ★★★★☆ 项目驱动，含部署到 AWS/Render | 进阶、找工作作品集 |
+| **Ambient Agents with LangGraph** | LangChain 官方 Academy | 项目课，从零做邮件助手 + LangSmith 评测 | — | 见官网 | ★★★★★ | 主线学完后的第一个真项目 |
+| **Deep Research with LangGraph** | LangChain 官方 Academy | 项目课，多智能体研究助手 | — | 见官网 | ★★★★★ | 主线学完后的第二个真项目 |
+| **Complete Agentic AI Bootcamp** | Udemy | 视频 | 长 | 付费 | ★★★☆☆ | 可跳过 |
+
+## 为什么主线选官方 Academy
+
+1. **代码就是课程本体。** `github.com/langchain-ai/langchain-academy` 里 30 个 notebook，
+   每个开头都链回对应的视频课，看不懂就跑，跑不通就看。
+2. **它跟着版本更新。** 该仓库最近一次更新在 2026 年 6 月，
+   依赖已经是 `langchain-core>=1.2.28`、`langchain-openai>=1.1.14`，属于 v1 时代的写法。
+   这一点其他免费资源基本都做不到。
+3. **它带 LangGraph Studio。** 每个 module 有 `studio/` 子目录，
+   `langgraph dev` 就能在浏览器里看图跑图、断点、改状态。这是理解「图」最快的方式。
+4. **它一路带到部署。** Module 6 直接讲 LangGraph Platform 部署、Assistants、双发消息处理。
+
+## 需要知道的版本坑
+
+- **2025-10：LangChain 与 LangGraph 同时发到 1.0**，承诺到 2.0 之前不再破坏性变更。
+- **`langgraph.prebuilt` 已废弃**，`create_react_agent` 这类能力搬到了 `langchain.agents`，
+  现在的入口是 `from langchain.agents import create_agent`。
+- 网上 2024 年写的 LangGraph 教程占多数，`from langgraph.prebuilt import create_react_agent`
+  之类还能跑但已经不是推荐写法。**认准 1.x 的资料。**
+- 官方文档站已改版到 `docs.langchain.com`，旧的 `langchain-ai.github.io/langgraph` 是历史版本。
+
+## 学习顺序建议
+
+```
+DeepLearning.AI 短课（1.5h，建立直觉）
+        ↓
+官方 Academy Module 0–3（核心，一定要动手）
+        ↓
+官方 Academy Module 4–6（进阶 + 部署）
+        ↓
+Ambient Agents 或 Deep Research 项目课（做出作品）
+        ↓
+freeCodeCamp 24h 项目课（查漏 + 部署实战）
+```
+
+## 来源
+
+- [langchain-ai/langchain-academy](https://github.com/langchain-ai/langchain-academy)
+- [LangChain Academy](https://academy.langchain.com/) · [Introduction to LangGraph](https://academy.langchain.com/courses/intro-to-langgraph) · [Ambient Agents](https://academy.langchain.com/courses/ambient-agents) · [Deep Research with LangGraph](https://academy.langchain.com/courses/deep-research-with-langgraph)
+- [DeepLearning.AI · AI Agents in LangGraph](https://www.deeplearning.ai/courses/ai-agents-in-langgraph)
+- [freeCodeCamp · Agentic AI using LangGraph](https://www.freecodecamp.org/news/agentic-ai-using-langgraph-build-ai-agents-automate-workflows/)
+- [LangChain 官方博客：LangChain and LangGraph reach v1.0](https://www.langchain.com/blog/langchain-langgraph-1dot0)
+- [LangChain 官方文档 Changelog](https://docs.langchain.com/oss/python/releases/changelog)
