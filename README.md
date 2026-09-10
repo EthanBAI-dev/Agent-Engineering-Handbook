@@ -23,6 +23,11 @@
 | [`docs/06-video-workflow.md`](docs/06-video-workflow.md) | **视频工作流**：文章→脚本→录制→剪辑→分发的完整链路 |
 | [`references/`](references/) | **官方文档本地镜像**（1300+ 页），`bash scripts/fetch-docs.sh` 一键重建 |
 | [`templates/`](templates/) | 文章模板、视频脚本模板、图表模板、Checklist |
+| [`lab/langgraph/`](lab/langgraph/) | **LangGraph 实验室**：四课可跑代码，从图的基本概念到人工审批 |
+| [`course-dev/conversation-log.md`](course-dev/conversation-log.md) | **学习对话记录**：问题、操作、验证、踩坑与下一步 |
+| [`course-dev/30-lesson-curriculum-map.md`](course-dev/30-lesson-curriculum-map.md) | **30 课课程地图**：逐课标题、概念归属、外部来源和学习证据 |
+| [`apps/web/`](apps/web/) | **Agent Hands-on Lab**：无需 API 的互动教学网站，可部署到 Vercel |
+| [`content/lessons/`](content/lessons/) | **00–05 课程文稿**：总纲、环境配置、四个基础实验与综合蓝图 |
 
 ## 目录结构
 
@@ -32,6 +37,12 @@
 ├── references/      # 官方文档本地镜像（脚本生成，可重建）
 ├── scripts/         # fetch-docs.sh 等工具脚本
 ├── posts/           # 正式文章（一篇一目录，含自己的图和视频脚本）
+├── lab/             # 动手代码区（一个技术栈一个目录）
+│   └── langgraph/   # LangGraph 四课 + 环境记录
+├── apps/
+│   └── web/         # Agent Hands-on Lab 互动教学网站
+├── course-dev/      # 教程制作记录（对话、课程规划与交接）
+├── content/lessons/ # 课程正文：00 总纲与 01–05 教学文章
 ├── templates/       # 文章 / 视频 / 图表 / 评审模板
 └── assets/
     ├── diagrams/    # 图表源文件 (.mmd / .excalidraw / .d2) + 导出 (.svg/.png)
