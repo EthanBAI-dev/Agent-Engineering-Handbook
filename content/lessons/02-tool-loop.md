@@ -16,19 +16,11 @@ runtime_note: "图结构已验证；真实模型调用等待本地 API Key"
 
 模型负责提出 tool call（工具调用请求），ToolNode（工具执行节点）负责执行函数，工具结果回到 messages（消息列表）后，模型才决定继续还是结束。
 
-> **术语说明**
->
-> - **model（模型节点）**：判断下一步是否需要调用工具。
-> - **tools（工具节点）**：承载并执行工具函数。
-> - **Edge（边）**：控制消息接下来流向哪个节点。
-> - **tool call**：描述模型想调用什么工具以及传入哪些参数。
-> - **ToolNode**：执行模型提出的真实工具调用。
-> - **messages**：保存用户、模型和工具之间的来往记录。
+其中，model（模型节点）判断下一步是否需要调用工具；tools（工具节点）承载并执行工具函数；Edge（边）控制消息接下来流向哪个节点；tool call描述模型想调用什么工具以及传入哪些参数；ToolNode执行模型提出的真实工具调用；messages保存用户、模型和工具之间的来往记录。
 
 模型说“我要调用 `add`”，不等于它已经运行了 Python（编程语言）代码。
 
-> **术语说明｜Python**  
-> 在本课中负责真正执行工具函数。
+它在本课中负责真正执行工具函数。
 
 ## 从第一课加两个节点
 
@@ -46,23 +38,15 @@ START → model ──有 tool call──→ tools
 
 图中还出现了 `START`（图入口）、`END`（图出口）和 tool result（工具返回结果）。
 
-> **术语说明**
->
-> - **START**：启动流程。
-> - **END**：结束流程。
-> - **tool result**：把工具执行结果送回 model。
+其中，START启动流程；END结束流程；tool result把工具执行结果送回 model。
 
 State（运行状态）、Node（节点）和 Edge 没有消失。我们只是把 State 换成消息列表，把节点换成模型与工具。
 
-> **术语说明**
->
-> - **State**：保存当前消息现场。
-> - **Node**：完成一次模型或工具操作。
+其中，State保存当前消息现场；Node完成一次模型或工具操作。
 
 这也是为什么不能跳过第一课：ReAct（推理—行动循环）仍然是一张图。
 
-> **术语说明｜ReAct**  
-> 让模型反复经历“判断下一步—执行工具—观察结果”，直到能够给出最终回答。
+它让模型反复经历“判断下一步—执行工具—观察结果”，直到能够给出最终回答。
 
 ## 先分清“决定”和“执行”
 
@@ -105,8 +89,7 @@ def word_count(text: str) -> int:
 
 `@tool`（工具装饰器）把普通函数包装成模型可识别的工具。
 
-> **术语说明｜@tool**  
-> 提取函数名、参数和说明，让模型知道这个函数何时可用。
+它提取函数名、参数和说明，让模型知道这个函数何时可用。
 
 函数名、参数类型和文档字符串共同构成工具说明。模型根据这份说明判断什么时候使用它。
 
@@ -122,8 +105,7 @@ model = get_model().bind_tools(TOOLS)
 
 `bind_tools` 不会立刻执行所有工具。
 
-> **术语说明｜bind_tools**  
-> 把工具说明注册到模型请求中，让模型可以生成合法的 tool call。
+它把工具说明注册到模型请求中，让模型可以生成合法的 tool call。
 
 它只是把工具的名称、参数和说明交给模型，让模型有能力生成合法的 tool call。真正的 Python 函数仍然由 ToolNode 调用。
 
@@ -133,10 +115,7 @@ model = get_model().bind_tools(TOOLS)
 
 这一课使用 LangGraph（智能体流程编排框架）内置的 `MessagesState`。它只有一个核心字段：
 
-> **术语说明**
->
-> - **LangGraph**：按照图组织模型和工具节点的运行。
-> - **MessagesState**：保存完整消息历史。
+其中，LangGraph按照图组织模型和工具节点的运行；MessagesState保存完整消息历史。
 
 ```text
 messages
@@ -144,23 +123,17 @@ messages
 
 这个字段使用消息 Reducer（归并规则）。
 
-> **术语说明｜Reducer**  
-> 把新消息追加到历史后面，而不是覆盖整个列表。
+它把新消息追加到历史后面，而不是覆盖整个列表。
 
 一次工具调用后，消息大致按这个顺序累积：
 
-> **术语说明**
->
-> - **HumanMessage（用户消息）**：保存用户问题。
-> - **AIMessage（模型消息）**：保存 tool call、模型回答或下一次调用意图。
-> - **ToolMessage（工具消息）**：保存工具执行结果。
+其中，HumanMessage（用户消息）保存用户问题；AIMessage（模型消息）保存 tool call、模型回答或下一次调用意图；ToolMessage（工具消息）保存工具执行结果。
 
 如果每次更新都覆盖 `messages`，model 就看不到用户原问题，也看不到工具刚返回的结果。
 
 所以 Reducer 在这里不是实现细节。它直接决定 Agent（智能体）能否保持一条连续的推理与行动记录。
 
-> **术语说明｜Agent**  
-> 根据当前消息决定下一步，并在得到工具结果后继续处理任务。
+它根据当前消息决定下一步，并在得到工具结果后继续处理任务。
 
 ## model 节点只负责问一次模型
 
@@ -171,8 +144,7 @@ def call_model(state: MessagesState) -> dict:
     return {"messages": [model.invoke(state["messages"])]}
 ```
 
-> **术语说明｜model.invoke（调用模型方法）**  
-> 把当前 messages 发送给模型，并取得一条新的模型消息。
+它把当前 messages 发送给模型，并取得一条新的模型消息。
 
 它做三件事：
 
@@ -209,8 +181,7 @@ graph.add_conditional_edges("model", tools_condition)
 
 `tools_condition` 会检查最后一条模型消息有没有工具调用。
 
-> **术语说明｜tools_condition**  
-> 根据是否存在 tool call 选择下一条 Edge。
+它根据是否存在 tool call 选择下一条 Edge。
 
 用大白话表达就是：
 
@@ -271,8 +242,7 @@ word_count("the quick brown fox jumps") = 5
 
 这一步会调用模型，请先按第 00 课配置 `ANTHROPIC_API_KEY`（Anthropic 模型接口密钥）。然后在 `lab/langgraph` 目录运行：
 
-> **术语说明｜ANTHROPIC_API_KEY**  
-> 验证程序是否有权调用 Anthropic 模型服务。
+它验证程序是否有权调用 Anthropic 模型服务。
 
 ```powershell
 uv run python examples/02_tool_agent.py
@@ -312,8 +282,7 @@ C. tools → END
 
 工具的价值是把需要确定性的工作交给确定性代码。数据库查询、文件读写和外部 API（应用程序编程接口）更是如此。
 
-> **术语说明｜API**  
-> 让 Agent 与数据库或外部服务交换请求和结果。
+它让 Agent 与数据库或外部服务交换请求和结果。
 
 ### “ToolNode 会自己决定用哪个工具”
 
@@ -335,8 +304,7 @@ model 生成 tool call，ToolNode 按请求执行。ToolNode 不负责理解用�
 
 你不需要背 `create_react_agent`（预构建 ReAct Agent 工厂函数）的全部参数。
 
-> **术语说明｜create_react_agent**  
-> 快速生成常见的模型—工具循环。
+它快速生成常见的模型—工具循环。
 
 先能手动画出这张图，之后使用封装才不会像使用魔法。
 
@@ -346,9 +314,6 @@ model 生成 tool call，ToolNode 按请求执行。ToolNode 不负责理解用�
 
 下一次重新调用时，Agent 为什么会忘记刚才说过的话？第 03 课会加入 checkpoint（状态快照）和 thread（会话线程）。
 
-> **术语说明**
->
-> - **checkpoint**：保存某一刻的运行现场。
-> - **thread**：把状态快照归到正确会话。
+其中，checkpoint保存某一刻的运行现场；thread把状态快照归到正确会话。
 
 [进入第 03 课：同一个 thread 为什么记得，换一个就忘了](03-memory-and-threads.md)

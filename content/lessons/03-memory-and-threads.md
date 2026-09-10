@@ -16,13 +16,7 @@ runtime_note: "图结构已验证；真实模型对话等待本地 API Key"
 
 checkpointer 把每一步 State（运行状态）保存成 checkpoint，`thread_id` 告诉 LangGraph（智能体流程编排框架）这份 State 属于哪一段会话。
 
-> **术语说明**
->
-> - **State**：保存当前现场。
-> - **checkpoint**：记录某一时刻的 State。
-> - **checkpointer**：存取 checkpoint。
-> - **thread_id**：把记录归到不同会话。
-> - **LangGraph**：按图运行节点并协调保存和恢复。
+其中，State保存当前现场；checkpoint记录某一时刻的 State；checkpointer存取 checkpoint；thread_id把记录归到不同会话；LangGraph按图运行节点并协调保存和恢复。
 
 同一个 `thread_id` 会接着过去运行；换一个 id，就像打开一段全新对话。
 
@@ -30,13 +24,11 @@ checkpointer 把每一步 State（运行状态）保存成 checkpoint，`thread_
 
 Agent 的工作依赖 State 中现有的信息；State 没保存，它就没有过去可读。
 
-> **术语说明｜Agent（智能体）**  
-> 根据消息选择步骤、调用工具，并结合已有状态继续行动。
+它根据消息选择步骤、调用工具，并结合已有状态继续行动。
 
 第 02 课已经把所有消息放进 `MessagesState`（消息状态）。
 
-> **术语说明｜MessagesState**  
-> 在一次图运行中持续累积对话和工具消息。
+它在一次图运行中持续累积对话和工具消息。
 
 但那只能保证同一次图运行里，消息不会互相覆盖。下一次重新调用图时，如果没有保存机制，程序仍然从你新传入的 State 开始。
 
@@ -58,8 +50,7 @@ checkpoint 可以理解为图在某一步的快照。
 
 课程示例使用 `InMemorySaver`（内存检查点保存器）：
 
-> **术语说明｜InMemorySaver**  
-> 把 checkpoint 暂存在当前进程的内存中，适合无需数据库的教学实验。
+它把 checkpoint 暂存在当前进程的内存中，适合无需数据库的教学实验。
 
 ```python
 from langgraph.checkpoint.memory import InMemorySaver
@@ -73,15 +64,13 @@ app = graph.compile(checkpointer=InMemorySaver())
 
 代码中的 `compile`（编译图）会生成可以调用的应用 `app`。
 
-> **术语说明｜compile**  
-> 把节点、边和 checkpointer 组合成可运行的图。
+它把节点、边和 checkpointer 组合成可运行的图。
 
 从这一刻开始，图会在执行过程中保存 checkpoint。
 
 图里的 model（模型节点）不需要为了“记忆”而重写：
 
-> **术语说明｜model**  
-> 读取当前消息并调用一次模型。
+它读取当前消息并调用一次模型。
 
 ```python
 def call_model(state: MessagesState) -> dict:
@@ -90,8 +79,7 @@ def call_model(state: MessagesState) -> dict:
 
 这里使用了 `model.invoke`（调用模型方法）。
 
-> **术语说明｜model.invoke**  
-> 把当前 messages 发送给模型，并取得一条新的模型消息。
+它把当前 messages 发送给模型，并取得一条新的模型消息。
 
 保存和恢复由图的运行层处理，节点继续只负责自己的工作。
 
@@ -113,8 +101,7 @@ out = app.invoke({"messages": [("user", text)]}, cfg)
 
 这里使用了 `app.invoke`（调用图方法）。
 
-> **术语说明｜app.invoke**  
-> 把输入和会话配置交给整张图，并运行到结束或暂停位置。
+它把输入和会话配置交给整张图，并运行到结束或暂停位置。
 
 当 `thread="a"` 时，产生的 checkpoint 都归到会话 `a`。
 
@@ -167,8 +154,7 @@ LangGraph 不要求你猜 checkpointer 里有什么。
 
 可以使用 `get_state`（读取状态方法）直接读取某个 thread 的当前快照：
 
-> **术语说明｜get_state**  
-> 取出指定会话最近保存的 State，供程序或开发者检查。
+它取出指定会话最近保存的 State，供程序或开发者检查。
 
 ```python
 snap = app.get_state({"configurable": {"thread_id": "a"}})
@@ -185,8 +171,7 @@ print("thread a 存了", len(snap.values["messages"]), "条消息")
 
 它会调用真实模型。按第 00 课配置 API Key（接口密钥）后，在 `lab/langgraph` 目录运行：
 
-> **术语说明｜API Key**  
-> 验证程序是否有权使用模型服务。
+它验证程序是否有权使用模型服务。
 
 ```powershell
 uv run python examples/03_memory.py
@@ -204,8 +189,7 @@ uv run python examples/03_memory.py
 
 `InMemorySaver` 把 checkpoint 放在当前 Python（编程语言运行环境）进程的内存中。
 
-> **术语说明｜Python**  
-> 运行本地课程代码；这里的进程退出后，进程内存也会随之清空。
+它运行本地课程代码；这里的进程退出后，进程内存也会随之清空。
 
 它非常适合学习、单元测试和本地小实验，因为不需要安装数据库。
 

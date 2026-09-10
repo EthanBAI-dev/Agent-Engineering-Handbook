@@ -58,7 +58,7 @@ Agent Hands-on Lab 是一套面向中文初学者的 LangGraph 互动课程。�
 
 ### 术语解释
 
-Markdown 原稿使用段后引用块；网站使用渐进式术语浮层：
+Markdown 原稿采用首次出现后的同句或下一句解释；网站使用渐进式术语浮层：
 
 - 关键词带虚线下划线。
 - 支持鼠标悬停、键盘聚焦和手机点击。
@@ -66,6 +66,8 @@ Markdown 原稿使用段后引用块；网站使用渐进式术语浮层：
 - 触发词使用按钮语义与 `aria-describedby`，解释使用 `role="tooltip"`。
 
 组件：`apps/web/src/components/term.tsx`，已覆盖第 00–03 课。
+
+旧的“段后引用框”版本保存在 Git 分支 `backup/00-05-quote-terminology-2026-09-10`。不要在没有用户明确选择的情况下把 00–05 改回引用框；两种效果见 `course-dev/terminology-style-comparison.md`。
 
 ### Python 实验
 
