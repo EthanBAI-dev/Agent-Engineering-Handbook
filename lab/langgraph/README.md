@@ -40,6 +40,11 @@ uv run python examples/01_hello_graph.py
 | [`13_reducers.py`](examples/13_reducers.py) | 并行写同字段的 `InvalidUpdateError`，自定义 reducer | 否 |
 | [`14_long_messages.py`](examples/14_long_messages.py) | `trim_messages`、过滤与总结三种取舍 | 否 |
 | [`15_persistence.py`](examples/15_persistence.py) | SqliteSaver：**真的开一个子进程**验证跨进程持久化 | 否 |
+| [`16_approval_policy.py`](examples/16_approval_policy.py) | 自动 / 审批 / 禁止三档风险分级，未登记工具默认拒绝 | 否 |
+| [`17_edit_state.py`](examples/17_edit_state.py) | `update_state`：审批时直接改参数，或退回重新生成 | 否 |
+| [`18_time_travel.py`](examples/18_time_travel.py) | `get_state_history`、重放与分叉 | 否 |
+| [`19_retry_idempotency.py`](examples/19_retry_idempotency.py) | `RetryPolicy` 与幂等键：重试为什么会扣三次款 | 否 |
+| [`20_trusted_agent.py`](examples/20_trusted_agent.py) | 单元四综合项目，五条验收路径 | 否 |
 
 建议顺序就是 01 → 04。**别跳过 01** —— 02 之后的一切都只是给 01 那张图加节点。
 
@@ -91,6 +96,6 @@ model = ScriptedModel(script=[
 
 ## 状态
 
-- 01、04、06、09、10、11、12、13、14、15 已在本机实跑通过（无需 key）。
+- 01、04、06、09–20 已在本机实跑通过（无需 key）。
 - 02、03 已验证能正确构图（`compile()` + 节点检查），**真实 LLM 调用待填 key 后验证**。
 - 06 之后的例子统一使用 `_fake.py`，因此不需要 key 也能得到确定结果。

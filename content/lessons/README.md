@@ -1,6 +1,6 @@
 # Agent Hands-on Lab · 课程文稿索引
 
-> 状态：00–15 已有草稿，16–30 待写 ｜ 更新时间：2026-09-10
+> 状态：00–20 已有草稿，21–30 待写 ｜ 更新时间：2026-09-10
 
 完整 01–30 课程顺序及外部来源映射见 [`course-dev/30-lesson-curriculum-map.md`](../../course-dev/30-lesson-curriculum-map.md)。第 00 课是前言，不计入正式 30 课。
 
@@ -22,6 +22,11 @@
 | 13 | [Reducer 与合并](13-reducers-and-merging.md) | 并行改同一个字段谁说了算？ | `13_reducers.py` | 已写、已实跑 |
 | 14 | [上下文管理](14-context-management.md) | 消息太长该丢哪些？ | `14_long_messages.py` | 已写、已实跑 |
 | 15 | [持久化会话](15-persistent-sessions.md) | 换个进程还记不记得？ | `15_persistence.py` | 已写、已实跑（含子进程验证） |
+| 16 | [审批策略](16-approval-policy.md) | 什么动作必须问人？ | `16_approval_policy.py` | 已写、已实跑 |
+| 17 | [人工修改 State](17-edit-state-and-feedback.md) | 方向对但参数不对怎么办？ | `17_edit_state.py` | 已写、已实跑 |
+| 18 | [Time Travel](18-time-travel.md) | 能不能回到出错的那一步？ | `18_time_travel.py` | 已写、已实跑 |
+| 19 | [Retry 与幂等](19-retry-and-idempotency.md) | 重试会不会扣两次款？ | `19_retry_idempotency.py` | 已写、已实跑 |
+| 20 | [可信 Agent 项目](20-trusted-agent-project.md) | 怎样证明它不会做错事？ | `20_trusted_agent.py` | 已写、已实跑（五条验收） |
 
 ## 内容约定
 
