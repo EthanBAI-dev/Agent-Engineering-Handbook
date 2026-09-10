@@ -1,6 +1,6 @@
 # Agent Hands-on Lab · 互动课程开发图
 
-> 状态：00–05 文稿已完成初稿，第 00–03 课网页已实现并验证 ｜ 目标平台：Vercel ｜ 第一阶段不使用模型 API
+> 状态：00–30 文稿已完成初稿，第 00–04 课网页已实现并验证 ｜ 目标平台：Vercel ｜ 第一阶段不使用模型 API
 
 > 第 00 课是前言，不计入正式 30 课。第 01–30 课的完整标题、外部课程来源和逐课产出已固定在 [`30-lesson-curriculum-map.md`](30-lesson-curriculum-map.md)；本文继续保存当前开发中的精确实验契约。
 
@@ -224,9 +224,58 @@ Markdown 原稿继续保留段后引用块，保证脱离网站、关闭 JavaScr
 | 目标位置 | `apps/web/src/components/lesson-three-lab.tsx`。 |
 | 小屏策略 | 组稿区与两列 thread 改为纵向堆叠，thread 列取消最大高度直接展开，轨迹卡片两行显示。 |
 
+## 第 4 课简报
+
+- 源文件：`lab/langgraph/examples/04_human_in_loop.py`
+- 精确来源：State 见第 27–29 行，三个节点见第 32–47 行，图与 checkpointer 见第 50–60 行，运行入口见第 63–75 行。
+- 上一课交入：读者已经知道 checkpointer 按 `thread_id` 保存和恢复 State。
+- 学习者问题：以为人工审批就是前端弹一个确认框，不知道后端流程必须真的停住。
+- 一句话结果：学习者能让图停在 `interrupt`，分别用批准和拒绝恢复，并说出副作用为什么不能写在 `interrupt` 之前。
+- 本课拥有：`interrupt`、`Command(resume=...)`、暂停载荷 payload、恢复时的节点重放语义、审批点选取标准。
+- 只做回顾：checkpointer 与 `thread_id`；不重复第 03 课的多 thread 对比实验。
+- 有序教学块：
+  1. 前端按钮为什么不构成约束。
+  2. 三个业务节点和一个暂停点。
+  3. `interrupt` 把什么交给图外。
+  4. 为什么必须配 checkpointer 和同一个 `thread_id`。
+  5. 恢复会重跑节点——副作用放错一侧就会发生两次。
+  6. 审批点该放在哪里。
+- 暂不讲：审批人身份与权限（第 29 课）、审计日志（第 27 课）、风险分级表（第 16 课）。
+- 代码路径：`lab/langgraph/examples/04_human_in_loop.py`
+- 网页路径：`apps/web/src/components/lesson-four-article.tsx`、`lesson-four-lab.tsx` 与 `apps/web/src/lib/lesson-four.ts`
+- 验收标准：
+  - 暂停时 `next` 为 `("approval",)`，`result` 仍为空字符串。
+  - `propose` 执行 1 次；`interrupt` 之前的代码执行 2 次；之后的代码执行 1 次。
+  - 副作用写在 `interrupt` 之前时累计 2 次，写在批准之后时为 1 次。
+  - 两个 thread 分别得到「已删除 /tmp/cache」和「已取消」。
+- 下一课过渡：四个部件都看懂了，第 05 课不再引入新 API，只负责组合与边界判断。
+
+## 第 4 课实验契约
+
+| 字段 | 内容 |
+| --- | --- |
+| 问题 | 图怎样停在危险动作之前，人的决定又怎样送回去？ |
+| 输入 | 两条固定操作：`/tmp/cache`（thread t1）与 `/etc/passwd`（thread t2）；副作用位置可切换 |
+| 固定项 | 不执行真实删除；各段代码的执行次数对齐 `04_human_in_loop.py` 实跑结果 |
+| 操作 | 选操作 → 选副作用位置 → 调用图 → 观察暂停载荷与 State → 批准或拒绝 → 看计数变化 |
+| 预期输出 | 批准得到「已删除 /tmp/cache」，拒绝得到「已取消」；副作用在前累计 2 次、在后 1 次 |
+| 通过条件 | 两个 thread 分别跑出批准与拒绝两种 result |
+
+## 第 4 课教学图说明
+
+| 项目 | 内容 |
+| --- | --- |
+| 教学主张 | 人工审批是执行约束，不是界面装饰；恢复时节点会从开头重跑，副作用的位置决定它发生几次。 |
+| 数据来源 | `lab/langgraph/examples/04_human_in_loop.py`，各段执行次数由本仓库实测确认。 |
+| 图形形式 | 线性流程条：`START → propose → approval ⏸ → report → END`，暂停时 approval 变色并挂出暂停徽标。 |
+| 必要标注 | 当前节点、`next` 元组、`__interrupt__` 载荷、四个执行次数计数器、逐条运行日志。 |
+| 交互目的 | 让「图真的停住了」和「恢复会重跑」两件事同时可见；副作用计数器变红是本课的记忆锚点。 |
+| 目标位置 | `apps/web/src/components/lesson-four-lab.tsx`。 |
+| 小屏策略 | 选择区与面板改为纵向堆叠，计数器单列，流程条允许横向滚动；术语浮层改为底部浮条。 |
+
 ## MVP 范围
 
-包含：首页 30 课目录、第 00–03 课独立页面、术语渐进解释、课次分页、第 00 课双轨起步实验、第 1 课互动图与 State diff、第 2 课工具循环与 MessagesState、第 3 课双 thread 会话隔离与 get_state 快照、练习检查、真实源码片段、本地完成状态、响应式布局。
+包含：首页 30 课目录、第 00–04 课独立页面、术语渐进解释、课次分页、第 00 课双轨起步实验、第 1 课互动图与 State diff、第 2 课工具循环与 MessagesState、第 3 课双 thread 会话隔离与 get_state 快照、第 4 课 interrupt 暂停与恢复重放、练习检查、真实源码片段、本地完成状态、响应式布局。
 
 明确排除：模型 API、Python 服务、账号、数据库、支付、云端终端、任意代码执行。
 
@@ -239,11 +288,14 @@ Markdown 原稿继续保留段后引用块，保证脱离网站、关闭 JavaScr
 - 第 2 章文章、工具循环图、MessagesState 与 Edge 挑战已实现。
 - 第 00 课已加入 LangGraph 导读、最小流程预演、网页/本地双轨步骤器与命令复制。
 - 第 3 章文章、双列 thread 对照、checkpoint 版本、`get_state` 快照与分配挑战已实现。
-- 第 00–03 课已接入可悬停、聚焦和点击的术语浮层。
+- 第 4 章文章、暂停流程条、`__interrupt__` 载荷、四个执行次数计数器与批准/拒绝挑战已实现。
+- 术语改为**每一次出现都给提示**：`lib/glossary.ts` + `components/auto-term.tsx` 自动标注全站。
+- 第 01、04 课正文按 md 加厚，配 `article-kit.tsx` 的六种正文构件；00–03 的精简版保留在
+  `components/variants/`，可通过 `/lessons/<slug>/brief` 对照阅读。
 - 默认阈值 4 与挑战阈值 6 的结果已和 Python 源实验核对。
 - 第 2 章确定性动画已验证得到 `477`、`5` 和 5 条消息。
 - 第 3 章 a / b / a 分配已验证得到 thread a 4 条消息、v2，与 `03_memory.py` 的 `get_state` 一致。
-- 首页、四条独立课页、上一课/下一课与 00–30 课次跳转已实现。
+- 首页、五条独立课页、上一课/下一课与 00–30 课次跳转已实现。
 - `pnpm lint` 与 `pnpm build` 已通过，根页面为静态预渲染。
 
 ### 接下来按顺序做
@@ -253,7 +305,7 @@ Markdown 原稿继续保留段后引用块，保证脱离网站、关闭 JavaScr
 | 1 | 收集学习者对两章阅读节奏的真实反馈 | `course-dev/conversation-log.md` | 能指出具体困惑位置 |
 | 2 | 修正文字、动画或手机端问题 | `apps/web/src/app/page.tsx`、`globals.css`、`components/` | 两章逻辑基准不变 |
 | 3 | 完成 GitHub 上传与 Vercel 导入 | 仓库与 Vercel 项目 | 获得公开 HTTPS URL |
-| 4 | 第 4 章先写简报再实现 | 本文件、`04_human_in_loop.py` | 复用第 3 课的 checkpointer 前提，不重复多 thread 实验 |
+| 4 | 第 5 章先写简报再实现 | 本文件、`content/lessons/05-complete-agent-blueprint.md` | 不引入新 API，只做组合与边界判断 |
 
 ### 已确定，不重复讨论
 

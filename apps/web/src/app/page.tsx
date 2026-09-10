@@ -51,7 +51,7 @@ export default function Home() {
             <p className="eyebrow">30-LESSON COURSE</p>
             <h2>一课一个问题。<br />学到哪里，都能接着回来。</h2>
           </div>
-          <p>第 00 课是前言，不计入正式 30 课；第 01–03 课已经开放。第 04–30 课的主题和学习产出已经完成来源映射，将按“真实模型 → 状态与可靠性 → 高级模式 → 产品化”逐步开放。</p>
+          <p>第 00 课是前言，不计入正式 30 课；第 01–04 课已经开放。第 05–30 课的主题和学习产出已经完成来源映射，将按“真实模型 → 状态与可靠性 → 高级模式 → 产品化”逐步开放。</p>
         </header>
 
         <div className="open-lesson-grid">
@@ -78,7 +78,7 @@ export default function Home() {
       <section className="next-up">
         <p className="eyebrow">START SMALL</p>
         <h2>不用先装环境。<br />从看见 Agent 走第一步开始。</h2>
-        <p>第 00–03 课都能先在浏览器运行，不需要 API Key。理解流程以后，再逐层接入真实 Python、模型和长期记忆。</p>
+        <p>第 00–04 课都能先在浏览器运行，不需要 API Key。理解流程以后，再逐层接入真实 Python、模型和长期记忆。</p>
         <Link className="inverse-link" href={lessonHref(availableLessons[0]) ?? "/"}>进入第 00 课 →</Link>
       </section>
 

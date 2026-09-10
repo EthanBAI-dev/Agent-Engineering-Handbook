@@ -73,7 +73,7 @@ make clip       # 合成 60s 竖屏视频（需完整版 ffmpeg）
 - 00–30 课正文全部完成（[`content/lessons/`](content/lessons/)）
 - 23 个可实跑示例（[`lab/langgraph/`](lab/langgraph/)），需要模型的地方用
   [`_fake.py`](lab/langgraph/examples/_fake.py) 的脚本化模型，**绝大多数无需 API Key**
-- 互动网站已实现第 00–03 课（[`apps/web/`](apps/web/)），可部署到 Vercel，
+- 互动网站已实现第 00–04 课（[`apps/web/`](apps/web/)），可部署到 Vercel，
   Root Directory 填 `apps/web`
 
-**下一步**：把网页互动实现推进到第 04 课及以后；母实验 A「用 AI 复刻网站并上线」。
+**下一步**：把网页互动实现推进到第 05 课及以后；母实验 A「用 AI 复刻网站并上线」。

@@ -5,6 +5,7 @@ import { LessonZeroArticle } from "@/components/lesson-zero-article";
 import { LessonOneArticle } from "@/components/lesson-one-article";
 import { LessonTwoArticle } from "@/components/lesson-two-article";
 import { LessonThreeArticle } from "@/components/lesson-three-article";
+import { LessonFourArticle } from "@/components/lesson-four-article";
 import {
   TOTAL_LESSONS,
   availableLessons,
@@ -122,7 +123,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
         </aside>
 
         <div className="lesson-page-content">
-          {lesson.number === 0 ? <LessonZeroArticle /> : lesson.number === 1 ? <LessonOneArticle /> : lesson.number === 2 ? <LessonTwoArticle /> : <LessonThreeArticle />}
+          {lesson.number === 0 ? <LessonZeroArticle /> : lesson.number === 1 ? <LessonOneArticle /> : lesson.number === 2 ? <LessonTwoArticle /> : lesson.number === 3 ? <LessonThreeArticle /> : <LessonFourArticle />}
           <LessonPagination current={lesson.number} />
         </div>
       </div>

@@ -9,8 +9,13 @@ import { availableLessons, getLessonBySlug } from "@/lib/course";
 
 type BriefPageProps = { params: Promise<{ slug: string }> };
 
+/** 只有 00–03 有补充正文之前的精简版；之后的课直接按新标准写，没有对照版本。 */
+const BRIEF_LESSONS = new Set([0, 1, 2, 3]);
+
 export function generateStaticParams() {
-  return availableLessons.map((lesson) => ({ slug: lesson.slug }));
+  return availableLessons
+    .filter((lesson) => BRIEF_LESSONS.has(lesson.number))
+    .map((lesson) => ({ slug: lesson.slug }));
 }
 
 export const metadata: Metadata = { robots: { index: false, follow: false } };
@@ -24,7 +29,7 @@ export const metadata: Metadata = { robots: { index: false, follow: false } };
 export default async function LessonBriefPage({ params }: BriefPageProps) {
   const { slug } = await params;
   const lesson = getLessonBySlug(slug);
-  if (!lesson) notFound();
+  if (!lesson || !BRIEF_LESSONS.has(lesson.number)) notFound();
 
   return (
     <main className="site-shell lesson-site">
