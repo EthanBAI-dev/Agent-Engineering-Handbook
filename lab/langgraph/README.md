@@ -32,8 +32,34 @@ uv run python examples/01_hello_graph.py
 | [`02_tool_agent.py`](examples/02_tool_agent.py) | 手写 ReAct 循环：`model → tools → model`。最后给出 prebuilt 等价写法 | 是 |
 | [`03_memory.py`](examples/03_memory.py) | checkpointer + `thread_id`，Agent 为什么会忘、怎么让它记住 | 是 |
 | [`04_human_in_loop.py`](examples/04_human_in_loop.py) | `interrupt()` / `Command(resume=)`，危险操作前暂停等人点头 | 否 |
+| [`06_messages.py`](examples/06_messages.py) | 消息类型、Prompt 到底是什么，**哪些决定归模型、哪些归代码** | 否 |
+| [`09_streaming.py`](examples/09_streaming.py) | 三种 `stream_mode` 的区别，以及 `messages` 流为什么必须按节点过滤 | 否 |
+| [`10_budget.py`](examples/10_budget.py) | 单次请求的调用上限：模型不会自己停 | 否 |
 
 建议顺序就是 01 → 04。**别跳过 01** —— 02 之后的一切都只是给 01 那张图加节点。
+
+## 无需 API Key 的脚本化模型
+
+[`_fake.py`](examples/_fake.py) 提供 `ScriptedModel`：你提前写好它每一轮返回什么，
+图的其余部分——节点、条件边、`ToolNode`、`checkpointer`——全都是真的 LangGraph 在跑。
+
+课程规则是「文章里的确定数值必须来自可运行代码」，但第一阶段又不接真实模型 API。
+这个模型就是两者的交集：它不模拟智能，只让「图怎样运转」可以被反复验证。
+
+```python
+from _fake import ScriptedModel, ai, ai_tool_call
+
+model = ScriptedModel(script=[
+    ai_tool_call("add", {"a": 128, "b": 349}),
+    ai("128 + 349 = 477。"),
+]).bind_tools(TOOLS)
+```
+
+两个设计选择值得说明：
+
+- **剧本用完就报错**（`loop=False`）。图比预期多跑一轮时立刻暴露，而不是悄悄给出旧答案。
+- **每次返回的消息都带新 id**。`add_messages` 按 id 合并，复用同一个消息对象会被当成
+  「更新那条旧消息」而不是「追加一条新消息」——这个坑在写 `10_budget.py` 时真的踩到了。
 
 ## 三个已经踩到的坑
 
@@ -52,5 +78,6 @@ uv run python examples/01_hello_graph.py
 
 ## 状态
 
-- 01、04 已在本机实跑通过（无需 key）。
+- 01、04、06、09、10 已在本机实跑通过（无需 key）。
 - 02、03 已验证能正确构图（`compile()` + 节点检查），**真实 LLM 调用待填 key 后验证**。
+- 06 之后的例子统一使用 `_fake.py`，因此不需要 key 也能得到确定结果。
