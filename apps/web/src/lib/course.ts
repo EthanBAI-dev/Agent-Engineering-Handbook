@@ -41,17 +41,19 @@ const definedLessons: CourseLesson[] = [
   },
   {
     number: 3,
+    slug: "03-memory-and-threads",
     title: "同一个 thread 为什么记得，换一个就忘了",
     shortTitle: "会话记忆",
     description: "理解 checkpoint、thread_id 和恢复。",
-    status: "next",
+    status: "open",
+    duration: "9 分钟",
   },
   {
     number: 4,
     title: "Agent 怎样暂停，等人类批准后再继续",
     shortTitle: "人工审批",
     description: "理解 interrupt、resume 与安全边界。",
-    status: "planned",
+    status: "next",
   },
   {
     number: 5,

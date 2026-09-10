@@ -638,6 +638,43 @@ LangGraph：State / Node / Edge / Tools
 
 ---
 
+### 2026-09-10｜Claude Code 接手，完成第 03 课「会话记忆」
+
+**学习者**
+
+> 我用 codex 进行了一些开发，你可以尝试继续开发，你先读取看看，看看它进行到哪一步了？
+
+**Agent 讲解/操作**
+
+- 通读 `CLAUDE-CODE-HANDOFF.md`、`interactive-course-plan.md`、第 03 课文稿与 `03_memory.py`，确认下一项任务是第 03 课。
+- 新增 `apps/web/src/lib/lesson-three.ts`：三条固定消息、按 thread 分组的确定性运行逻辑与通过条件判定。
+- 新增 `lesson-three-lab.tsx`：thread 选择器、双列会话对照、checkpointer 说明行、`get_state` 快照面板、分配轨迹与判定反馈。
+- 新增 `lesson-three-article.tsx`：按“读、动、改、证”重写正文，首次术语接入 `Term` 组件。
+- `globals.css` 增加 `.thread-console`、`.thread-columns`、`.snapshot-panel`、`.thread-trace` 等样式与 820px / 600px 响应式规则。
+- 课程元数据把第 03 课改为 `open` 并配 slug，第 04 课改为 `next`；课程路由与首页文案同步。
+- 关键设计决定：回复文本由「这个 thread 里到底存了什么」推导，不抄写某次真实模型输出，并在页面上写明这是示意文本。
+- checkpoint 按「一次调用一版」简化显示，同时注明真实 LangGraph 每个 super-step 都会写 checkpoint。
+
+**运行与验证**
+
+- 命令：`pnpm lint`、`pnpm build`、Playwright 驱动 Chromium 在 1440px 与 390px 下实测。
+- 预期结果：四条课页静态预渲染；a / b / a 分配后 thread a 为 4 条消息、checkpoint v2，与 `03_memory.py` 末尾 `get_state` 的读数一致。
+- 实际结果：全部通过。三条都放进同一个 thread 时最后一次提问会连咖啡一起看到；放进没有名字的 thread 时答不出名字；两种宽度下横向溢出均为 0px，术语浮层未越界，Escape 可关闭，控制台无报错。
+
+**本轮学会了什么**
+
+- 核心概念：thread 隔离不是模型的判断，而是它压根没收到另一段会话的消息；把这一点做成「可以故意分错」的实验，比正确演示更有说服力。
+- 踩坑：`.term-popover` 有 150ms 过渡，自动化测试直接读 `isVisible()` 会误判为不可见，必须等待可见状态。
+- 踩坑：手机端给 thread 列留最大高度会把最后一条消息切一半，堆叠布局下应取消最大高度。
+- 可写进教程的素材：三种分配路线各自的失败信息，可以直接做成第 03 课的常见错误清单。
+
+**下一步**
+
+- [ ] 按交接文档第 6 节开发第 04 课「interrupt 与人工审批」。
+- [ ] 完成 Vercel 导入，拿到公开 HTTPS URL。
+
+---
+
 ## 后续记录模板
 
 ### YYYY-MM-DD｜主题

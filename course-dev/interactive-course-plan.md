@@ -1,6 +1,6 @@
 # Agent Hands-on Lab · 互动课程开发图
 
-> 状态：00–05 文稿已完成初稿，第 1–2 章网页已实现并验证 ｜ 目标平台：Vercel ｜ 第一阶段不使用模型 API
+> 状态：00–05 文稿已完成初稿，第 00–03 课网页已实现并验证 ｜ 目标平台：Vercel ｜ 第一阶段不使用模型 API
 
 > 第 00 课是前言，不计入正式 30 课。第 01–30 课的完整标题、外部课程来源和逐课产出已固定在 [`30-lesson-curriculum-map.md`](30-lesson-curriculum-map.md)；本文继续保存当前开发中的精确实验契约。
 
@@ -60,7 +60,7 @@ Markdown 原稿继续保留段后引用块，保证脱离网站、关闭 JavaScr
 - 再次点击、移走焦点或按 Escape 后关闭，正文布局不能因浮层出现而跳动。
 - 每篇课页仍重新计算首次术语；只在第一次完整解释，后文不反复弹出同一段定义。
 - 解释保持一到两句话，复杂机制回到正文或互动实验，不把整段教程塞进浮层。
-- 第一批实现范围为第 00–02 课；稳定后再应用到第 03–30 课。
+- 第一批实现范围为第 00–02 课；第 03 课已按同一规则接入，后续继续推广到 04–30。
 
 ## 第 00 课简报
 
@@ -175,9 +175,56 @@ Markdown 原稿继续保留段后引用块，保证脱离网站、关闭 JavaScr
 | 目标位置 | `apps/web/src/components/lesson-two-lab.tsx`。 |
 | 小屏策略 | 图和消息列表上下排列，消息卡片保持角色标签，图允许横向滚动。 |
 
+## 第 3 课简报
+
+- 源文件：`lab/langgraph/examples/03_memory.py`
+- 精确来源：`InMemorySaver` 导入见第 12 行，图与 `compile(checkpointer=...)` 见第 24–33 行，`thread_id` 配置与 `invoke` 见第 36–41 行，三次提问见第 44–47 行，`get_state` 见第 49–50 行。
+- 上一课交入：读者已经知道 messages 在一次运行里只追加不覆盖，但不知道下一次调用图时它去了哪里。
+- 学习者问题：以为「Agent 忘了」是模型记性差，不知道这是上一轮 State 根本没有被交给下一轮。
+- 一句话结果：学习者能把三条消息分配到正确的 thread，并解释为什么 a 记得名字、b 看不到。
+- 本课拥有：checkpointer、checkpoint、`thread_id`、`InMemorySaver`、`get_state`、会话记忆与长期记忆的边界。
+- 只做回顾：State 与 MessagesState；不重新完整定义。
+- 有序教学块：
+  1. 先说清楚「忘」不是模型的问题，是 State 没有被传下去。
+  2. 用酒店前台的比喻分开「谁在存」和「存给谁」。
+  3. `compile(checkpointer=...)` 与 `configurable.thread_id` 两行代码。
+  4. 自己把三条消息分到 a / b，观察隔离。
+  5. 用 `get_state` 直接查快照，再讲清 InMemorySaver 和 thread_id 的两条边界。
+- 暂不讲：interrupt/resume、时间旅行、Postgres checkpointer、账号与权限隔离、跨会话长期记忆。
+- 代码路径：`lab/langgraph/examples/03_memory.py`
+- 网页路径：`apps/web/src/components/lesson-three-article.tsx`、`lesson-three-lab.tsx` 与 `apps/web/src/lib/lesson-three.ts`
+- 验收标准：
+  - 按 a / b / a 分配后，thread a 存 4 条消息、checkpoint 为 v2，与 `03_memory.py` 末尾的 `get_state` 结果一致。
+  - 三条都放进同一个 thread 时，最后一次提问会连咖啡也看见。
+  - 最后一次提问放进没有名字的 thread 时，model 答不出名字。
+- 下一课过渡：State 既然能存下来，就能在中途停下来——下一课让图暂停并等待人类批准。
+
+## 第 3 课实验契约
+
+| 字段 | 内容 |
+| --- | --- |
+| 问题 | 同一句提问，放进不同 thread 为什么得到不同答案？ |
+| 输入 | 三条固定消息：①「记住：我在学 LangGraph，我叫小白。」②「记住：我喜欢喝咖啡。」③「我叫什么？」 |
+| 固定项 | 每条消息由学习者指定 thread；messages 只追加；回复文本由该 thread 内已存在的事实推导，不抄写某次真实模型输出 |
+| 操作 | 选择 thread → 调用图 → 查看恢复条数、model 看到的输入条数与 checkpoint 版本 → 用 `get_state` 查快照 → 重新分配再跑一次 |
+| 预期输出 | a / b / a：thread a 4 条消息、v2，答「你叫小白。」；thread b 2 条消息、v1，不含名字 |
+| 通过条件 | 三条分别落在 a / b / a，且最后一次提问看得见名字、看不见咖啡 |
+
+## 第 3 课教学图说明
+
+| 项目 | 内容 |
+| --- | --- |
+| 教学主张 | checkpointer 负责存，`thread_id` 负责分组；隔离不是模型的判断，而是它压根没收到另一段会话的消息。 |
+| 数据来源 | `lab/langgraph/examples/03_memory.py` 第 12、24–50 行。 |
+| 图形形式 | 双列会话对照：左右两列 thread 同屏显示，当前目标 thread 高亮，另一列保持可见但降饱和。 |
+| 必要标注 | 目标 `thread_id`、本次恢复的消息条数、model 这一步看到的输入条数、每个 thread 的 checkpoint 版本与消息数、`get_state` 读数。 |
+| 交互目的 | 让学习者亲手把消息分错一次，看到「同一个 thread 什么都看得见」和「换一个 thread 什么都看不见」两种失败。 |
+| 目标位置 | `apps/web/src/components/lesson-three-lab.tsx`。 |
+| 小屏策略 | 组稿区与两列 thread 改为纵向堆叠，thread 列取消最大高度直接展开，轨迹卡片两行显示。 |
+
 ## MVP 范围
 
-包含：首页 30 课目录、第 00–02 课独立页面、术语渐进解释、课次分页、第 00 课双轨起步实验、第 1 课互动图与 State diff、第 2 课工具循环与 MessagesState、练习检查、真实源码片段、本地完成状态、响应式布局。
+包含：首页 30 课目录、第 00–03 课独立页面、术语渐进解释、课次分页、第 00 课双轨起步实验、第 1 课互动图与 State diff、第 2 课工具循环与 MessagesState、第 3 课双 thread 会话隔离与 get_state 快照、练习检查、真实源码片段、本地完成状态、响应式布局。
 
 明确排除：模型 API、Python 服务、账号、数据库、支付、云端终端、任意代码执行。
 
@@ -189,10 +236,12 @@ Markdown 原稿继续保留段后引用块，保证脱离网站、关闭 JavaScr
 - 第 1 章文章、流程图、State diff 与阈值挑战已实现。
 - 第 2 章文章、工具循环图、MessagesState 与 Edge 挑战已实现。
 - 第 00 课已加入 LangGraph 导读、最小流程预演、网页/本地双轨步骤器与命令复制。
-- 第 00–02 课已接入可悬停、聚焦和点击的术语浮层。
+- 第 3 章文章、双列 thread 对照、checkpoint 版本、`get_state` 快照与分配挑战已实现。
+- 第 00–03 课已接入可悬停、聚焦和点击的术语浮层。
 - 默认阈值 4 与挑战阈值 6 的结果已和 Python 源实验核对。
 - 第 2 章确定性动画已验证得到 `477`、`5` 和 5 条消息。
-- 首页、三条独立课页、上一课/下一课与 00–30 课次跳转已实现。
+- 第 3 章 a / b / a 分配已验证得到 thread a 4 条消息、v2，与 `03_memory.py` 的 `get_state` 一致。
+- 首页、四条独立课页、上一课/下一课与 00–30 课次跳转已实现。
 - `pnpm lint` 与 `pnpm build` 已通过，根页面为静态预渲染。
 
 ### 接下来按顺序做
@@ -202,7 +251,7 @@ Markdown 原稿继续保留段后引用块，保证脱离网站、关闭 JavaScr
 | 1 | 收集学习者对两章阅读节奏的真实反馈 | `course-dev/conversation-log.md` | 能指出具体困惑位置 |
 | 2 | 修正文字、动画或手机端问题 | `apps/web/src/app/page.tsx`、`globals.css`、`components/` | 两章逻辑基准不变 |
 | 3 | 完成 GitHub 上传与 Vercel 导入 | 仓库与 Vercel 项目 | 获得公开 HTTPS URL |
-| 4 | 第 3 章先写简报再实现 | 本文件、`03_memory.py` | 不提前扩展账号数据库 |
+| 4 | 第 4 章先写简报再实现 | 本文件、`04_human_in_loop.py` | 复用第 3 课的 checkpointer 前提，不重复多 thread 实验 |
 
 ### 已确定，不重复讨论
 
