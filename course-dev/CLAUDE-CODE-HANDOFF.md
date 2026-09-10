@@ -50,8 +50,10 @@ Agent Hands-on Lab 是一套面向中文初学者的 LangGraph 互动课程。�
 - 第 03 课包含双列 thread 对照、checkpoint 版本、`get_state` 快照，以及“把三条消息分配到正确 thread”的挑战。
 - 第 04 课包含暂停流程条、`__interrupt__` 载荷、四个执行次数计数器，以及“批准一条、拒绝一条”的挑战。
 - 术语提示已改为**每一次出现都给**，由 `lib/glossary.ts` 与 `components/auto-term.tsx` 自动标注。
-- 第 01、04 课正文已按 Markdown 加厚；00–03 的精简版保留在 `components/variants/`，
-  可通过 `/lessons/<slug>/brief` 对照阅读。
+- 第 01、04 课正文已按 Markdown 加厚；00–03 的精简版保留在 `components/variants/`。
+- **精简版与完整版是产品的两档**：精简版（`/lessons/<slug>/brief`）免费，互动实验与完整版完全一样，
+  只是正文更短；完整版是付费方向。收费本身尚未实现，需要先定账号层级与计费方式。
+- 版式统一为一条主栏 `--measure`（710px），只有互动实验用 `--measure-wide`（920px）对称展开。
 - 完成状态使用浏览器 `localStorage`，当前没有账号和数据库。
 
 ### 术语解释
