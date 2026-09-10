@@ -38,11 +38,11 @@
 ├── scripts/         # fetch-docs.sh 等工具脚本
 ├── posts/           # 正式文章（一篇一目录，含自己的图和视频脚本）
 ├── lab/             # 动手代码区（一个技术栈一个目录）
-│   └── langgraph/   # LangGraph 四课 + 环境记录
+│   └── langgraph/   # LangGraph 23 个可跑示例 + 环境记录
 ├── apps/
 │   └── web/         # Agent Hands-on Lab 互动教学网站
 ├── course-dev/      # 教程制作记录（对话、课程规划与交接）
-├── content/lessons/ # 课程正文：00 总纲与 01–05 教学文章
+├── content/lessons/ # 课程正文：00 总纲与 01–30 教学文章
 ├── templates/       # 文章 / 视频 / 图表 / 评审模板
 └── assets/
     ├── diagrams/    # 图表源文件 (.mmd / .excalidraw / .d2) + 导出 (.svg/.png)
@@ -67,8 +67,13 @@ make clip       # 合成 60s 竖屏视频（需完整版 ffmpeg）
 
 ## 状态
 
-M0 基建**已完成**：7 份方法论文档、模板、1300 页官方文档离线镜像、
-配图与视频工具链、第 01 篇样板（双版本）。
+**M0 基建已完成**：7 份方法论文档、模板、1300 页官方文档离线镜像、配图与视频工具链。
 
-下一步 **M1**：母实验 A「用 AI 复刻网站并上线」，派生 7 条内容，
-验证「一次实验七条内容」的产能模型跑不跑得通。
+**Agent Hands-on Lab 课程**：
+- 00–30 课正文全部完成（[`content/lessons/`](content/lessons/)）
+- 23 个可实跑示例（[`lab/langgraph/`](lab/langgraph/)），需要模型的地方用
+  [`_fake.py`](lab/langgraph/examples/_fake.py) 的脚本化模型，**绝大多数无需 API Key**
+- 互动网站已实现第 00–03 课（[`apps/web/`](apps/web/)），可部署到 Vercel，
+  Root Directory 填 `apps/web`
+
+**下一步**：把网页互动实现推进到第 04 课及以后；母实验 A「用 AI 复刻网站并上线」。
