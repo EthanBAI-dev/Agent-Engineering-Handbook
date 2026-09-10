@@ -45,6 +45,11 @@ uv run python examples/01_hello_graph.py
 | [`18_time_travel.py`](examples/18_time_travel.py) | `get_state_history`、重放与分叉 | 否 |
 | [`19_retry_idempotency.py`](examples/19_retry_idempotency.py) | `RetryPolicy` 与幂等键：重试为什么会扣三次款 | 否 |
 | [`20_trusted_agent.py`](examples/20_trusted_agent.py) | 单元四综合项目，五条验收路径 | 否 |
+| [`21_parallel.py`](examples/21_parallel.py) | 扇出扇入，串行 0.91s 对并行 0.31s 实测 | 否 |
+| [`22_map_reduce.py`](examples/22_map_reduce.py) | `Send` 动态扇出，以及**零扇出时下游被静默跳过** | 否 |
+| [`23_subgraph.py`](examples/23_subgraph.py) | 子图封装，以及父子共享累加字段的**重复计数陷阱** | 否 |
+| [`24_planner_executor.py`](examples/24_planner_executor.py) | 计划写成数据才能校验；重规划与它的上限 | 否 |
+| [`25_multi_agent.py`](examples/25_multi_agent.py) | 交接损耗实测：什么时候才真的需要第二个 Agent | 否 |
 
 建议顺序就是 01 → 04。**别跳过 01** —— 02 之后的一切都只是给 01 那张图加节点。
 
@@ -90,12 +95,20 @@ model = ScriptedModel(script=[
 照单全收会把工具的原始返回拼进用户看到的答案里，必须按 `langgraph_node` 过滤。
 见 `09_streaming.py`。
 
-**5. human-in-the-loop 必须配 checkpointer**
+**5. 子图和父图共享带 reducer 的字段会重复计数**
+子图只要在 schema 里**声明**了父图的累加字段，父图已有的值就会被回写并再累加一次，
+即使子图什么都没写。接口用覆盖型字段传，累加型字段各留各的。见 `23_subgraph.py`。
+
+**6. 没有入边的节点会被静默跳过**
+`compile()` 不报错，运行时也不报错，那个节点就是不执行。
+零扇出时 reduce 被跳过（`22_map_reduce.py`）是同一类问题。
+
+**7. human-in-the-loop 必须配 checkpointer**
 `interrupt()` 让图暂停，但「停在哪、state 是什么」得有地方存。
 `compile()` 不传 checkpointer 的话，恢复无从谈起。
 
 ## 状态
 
-- 01、04、06、09–20 已在本机实跑通过（无需 key）。
+- 01、04、06、09–25 已在本机实跑通过（无需 key）。
 - 02、03 已验证能正确构图（`compile()` + 节点检查），**真实 LLM 调用待填 key 后验证**。
 - 06 之后的例子统一使用 `_fake.py`，因此不需要 key 也能得到确定结果。

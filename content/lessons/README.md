@@ -1,6 +1,6 @@
 # Agent Hands-on Lab · 课程文稿索引
 
-> 状态：00–20 已有草稿，21–30 待写 ｜ 更新时间：2026-09-10
+> 状态：00–25 已有草稿，26–30 待写 ｜ 更新时间：2026-09-10
 
 完整 01–30 课程顺序及外部来源映射见 [`course-dev/30-lesson-curriculum-map.md`](../../course-dev/30-lesson-curriculum-map.md)。第 00 课是前言，不计入正式 30 课。
 
@@ -27,6 +27,11 @@
 | 18 | [Time Travel](18-time-travel.md) | 能不能回到出错的那一步？ | `18_time_travel.py` | 已写、已实跑 |
 | 19 | [Retry 与幂等](19-retry-and-idempotency.md) | 重试会不会扣两次款？ | `19_retry_idempotency.py` | 已写、已实跑 |
 | 20 | [可信 Agent 项目](20-trusted-agent-project.md) | 怎样证明它不会做错事？ | `20_trusted_agent.py` | 已写、已实跑（五条验收） |
+| 21 | [Parallelization](21-parallelization.md) | 能同时做的为什么在排队？ | `21_parallel.py` | 已写、已实跑（含耗时实测） |
+| 22 | [Map-reduce](22-map-reduce.md) | 数量不固定怎么扇出？ | `22_map_reduce.py` | 已写、已实跑 |
+| 23 | [Subgraph](23-subgraph.md) | 封装之后 State 怎么对接？ | `23_subgraph.py` | 已写、已实跑 |
+| 24 | [Planner–Executor](24-planner-executor.md) | 怎样在动手前审查计划？ | `24_planner_executor.py` | 已写、已实跑 |
+| 25 | [Multi-Agent](25-multi-agent.md) | 真的需要第二个 Agent 吗？ | `25_multi_agent.py` | 已写、已实跑 |
 
 ## 内容约定
 
