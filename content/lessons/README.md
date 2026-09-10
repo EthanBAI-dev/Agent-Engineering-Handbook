@@ -1,6 +1,6 @@
-# Agent Hands-on Lab · 课程文稿索引
+# Agent Hands-on Lab · 课程文稿索引（00–30）
 
-> 状态：00–25 已有草稿，26–30 待写 ｜ 更新时间：2026-09-10
+> 状态：00–30 全部已有草稿 ｜ 更新时间：2026-09-10
 
 完整 01–30 课程顺序及外部来源映射见 [`course-dev/30-lesson-curriculum-map.md`](../../course-dev/30-lesson-curriculum-map.md)。第 00 课是前言，不计入正式 30 课。
 
@@ -32,6 +32,11 @@
 | 23 | [Subgraph](23-subgraph.md) | 封装之后 State 怎么对接？ | `23_subgraph.py` | 已写、已实跑 |
 | 24 | [Planner–Executor](24-planner-executor.md) | 怎样在动手前审查计划？ | `24_planner_executor.py` | 已写、已实跑 |
 | 25 | [Multi-Agent](25-multi-agent.md) | 真的需要第二个 Agent 吗？ | `25_multi_agent.py` | 已写、已实跑 |
+| 26 | [Agentic RAG](26-search-and-rag.md) | 检索不到时会不会编？ | `26_rag.py` | 已写、已实跑 |
+| 27 | [评测与可观测](27-eval-and-observability.md) | 这次改动是变好还是变差？ | `27_eval.py` | 已写、已实跑 |
+| 28 | [安全边界](28-security-boundaries.md) | 被说服时它最多能做什么？ | `28_security.py` | 已写、已实跑 |
+| 29 | [账号与数据隔离](29-identity-and-isolation.md) | 换个 thread_id 能读到谁的？ | `29_identity.py` | 已写、已实跑 |
+| 30 | [长期记忆与毕业项目](30-long-term-memory.md) | 跨会话怎样记住这个人？ | `30_long_term_memory.py` | 已写、已实跑 |
 
 ## 内容约定
 

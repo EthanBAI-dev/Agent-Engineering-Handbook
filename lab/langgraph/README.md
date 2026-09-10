@@ -50,6 +50,11 @@ uv run python examples/01_hello_graph.py
 | [`23_subgraph.py`](examples/23_subgraph.py) | 子图封装，以及父子共享累加字段的**重复计数陷阱** | 否 |
 | [`24_planner_executor.py`](examples/24_planner_executor.py) | 计划写成数据才能校验；重规划与它的上限 | 否 |
 | [`25_multi_agent.py`](examples/25_multi_agent.py) | 交接损耗实测：什么时候才真的需要第二个 Agent | 否 |
+| [`26_rag.py`](examples/26_rag.py) | 带引用的回答，以及检索落空时由条件边保证的拒绝 | 否 |
+| [`27_eval.py`](examples/27_eval.py) | 五个例子的数据集，逐例定位「修好了什么、弄坏了什么」 | 否 |
+| [`28_security.py`](examples/28_security.py) | 路径穿越校验、工具白名单、提示注入三层防线 | 否 |
+| [`29_identity.py`](examples/29_identity.py) | 归属检查：两个账号读不到对方的 thread | 否 |
+| [`30_long_term_memory.py`](examples/30_long_term_memory.py) | `store` 跨会话记住用户，命名空间按 user_id 隔离 | 否 |
 
 建议顺序就是 01 → 04。**别跳过 01** —— 02 之后的一切都只是给 01 那张图加节点。
 
@@ -109,6 +114,6 @@ model = ScriptedModel(script=[
 
 ## 状态
 
-- 01、04、06、09–25 已在本机实跑通过（无需 key）。
+- 01、04、06、09–30 已在本机实跑通过（无需 key），共 23 个示例。
 - 02、03 已验证能正确构图（`compile()` + 节点检查），**真实 LLM 调用待填 key 后验证**。
 - 06 之后的例子统一使用 `_fake.py`，因此不需要 key 也能得到确定结果。

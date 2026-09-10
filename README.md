@@ -23,11 +23,11 @@
 | [`docs/06-video-workflow.md`](docs/06-video-workflow.md) | **视频工作流**：文章→脚本→录制→剪辑→分发的完整链路 |
 | [`references/`](references/) | **官方文档本地镜像**（1300+ 页），`bash scripts/fetch-docs.sh` 一键重建 |
 | [`templates/`](templates/) | 文章模板、视频脚本模板、图表模板、Checklist |
-| [`lab/langgraph/`](lab/langgraph/) | **LangGraph 实验室**：四课可跑代码，从图的基本概念到人工审批 |
+| [`lab/langgraph/`](lab/langgraph/) | **LangGraph 实验室**：23 个可跑示例，绝大多数无需 API Key |
 | [`course-dev/conversation-log.md`](course-dev/conversation-log.md) | **学习对话记录**：问题、操作、验证、踩坑与下一步 |
 | [`course-dev/30-lesson-curriculum-map.md`](course-dev/30-lesson-curriculum-map.md) | **30 课课程地图**：逐课标题、概念归属、外部来源和学习证据 |
 | [`apps/web/`](apps/web/) | **Agent Hands-on Lab**：无需 API 的互动教学网站，可部署到 Vercel |
-| [`content/lessons/`](content/lessons/) | **00–05 课程文稿**：总纲、环境配置、四个基础实验与综合蓝图 |
+| [`content/lessons/`](content/lessons/) | **00–30 课程文稿**：从图与 State 一路到长期记忆与毕业项目 |
 
 ## 目录结构
 
