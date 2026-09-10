@@ -3,10 +3,24 @@ import { annotate } from "@/components/auto-term";
 
 /** 正文里的代码块。代码本身不做术语标注，说明文字才做。 */
 export function CodeBlock({ caption, children }: { caption?: string; children: string }) {
+  const lines = children.replace(/\n$/, "").split("\n");
+
   return (
     <figure className="code-figure">
-      {caption && <figcaption>{caption}</figcaption>}
-      <pre><code>{children}</code></pre>
+      <figcaption className="code-window-bar">
+        <span className="window-dots" aria-hidden="true"><i /><i /><i /></span>
+        <span>{caption ?? "CODE"}</span>
+        <small>PYTHON</small>
+      </figcaption>
+      <pre>
+        <code className="code-lines">
+          {lines.map((line, index) => (
+            <span className="code-line" data-line={String(index + 1).padStart(2, "0")} key={`${index}-${line}`}>
+              {line || " "}
+            </span>
+          ))}
+        </code>
+      </pre>
     </figure>
   );
 }

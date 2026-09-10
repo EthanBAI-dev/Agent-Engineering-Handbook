@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { inter, jetbrains, notoSerif, notoSerifSC } from "./fonts";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
@@ -25,7 +26,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="zh-CN" data-scroll-behavior="smooth">
+    <html
+      lang="zh-CN"
+      data-scroll-behavior="smooth"
+      className={`${inter.variable} ${notoSerif.variable} ${notoSerifSC.variable} ${jetbrains.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

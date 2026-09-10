@@ -6,6 +6,7 @@ import { LessonOneArticle } from "@/components/lesson-one-article";
 import { LessonTwoArticle } from "@/components/lesson-two-article";
 import { LessonThreeArticle } from "@/components/lesson-three-article";
 import { LessonFourArticle } from "@/components/lesson-four-article";
+import { LessonCourseStrip } from "@/components/lesson-course-strip";
 import {
   TOTAL_LESSONS,
   availableLessons,
@@ -106,22 +107,21 @@ export default async function LessonPage({ params }: LessonPageProps) {
       <header className="topbar">
         <Link className="brand" href="/" aria-label="Agent Hands-on Lab 课程目录">
           <span className="brand-mark">A</span>
-          <span>Agent Hands-on Lab</span>
+          <span className="brand-text">
+            <span className="brand-name">Agent Hands-on Lab</span>
+            <span className="brand-tagline">读一段，动一步，真正看懂 Agent</span>
+          </span>
         </Link>
-        <Link className="catalog-link" href="/#curriculum">全部课程</Link>
+        <nav className="topnav lesson-topnav" aria-label="课程导航">
+          <Link href="/#curriculum">课程大纲</Link>
+          <a href="https://github.com/EthanBAI-dev/Agent-Engineering-Handbook" rel="noopener noreferrer" target="_blank">GitHub 仓库</a>
+        </nav>
         <span className="progress-label">{lesson.number === 0 ? "第 00 课 · 前言" : `第 ${lesson.number} / ${TOTAL_LESSONS} 课`}</span>
       </header>
 
-      <div className="lesson-page-grid">
-        <aside className="lesson-side-index">
-          <Link href="/#curriculum">← 课程目录</Link>
-          <p>当前学习</p>
-          <strong>{String(lesson.number).padStart(2, "0")}</strong>
-          <span>{lesson.shortTitle}</span>
-          <div className="side-progress"><i style={{ width: `${lesson.number === 0 ? 2 : (lesson.number / TOTAL_LESSONS) * 100}%` }} /></div>
-          <small>{lesson.number === 0 ? "PREFACE · READY" : `${Math.round((lesson.number / TOTAL_LESSONS) * 100)}% of course`}</small>
-        </aside>
+      <LessonCourseStrip current={lesson.number} />
 
+      <div className="lesson-page-grid">
         <div className="lesson-page-content">
           {lesson.number === 0 ? <LessonZeroArticle /> : lesson.number === 1 ? <LessonOneArticle /> : lesson.number === 2 ? <LessonTwoArticle /> : lesson.number === 3 ? <LessonThreeArticle /> : <LessonFourArticle />}
           <LessonPagination current={lesson.number} />

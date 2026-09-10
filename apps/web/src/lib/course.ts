@@ -106,6 +106,36 @@ export function getLessonBySlug(slug: string) {
   return availableLessons.find((lesson) => lesson.slug === slug);
 }
 
+export function getLessonByNumber(number: number) {
+  return allLessonSlots.find((lesson) => lesson.number === number);
+}
+
 export function lessonHref(lesson: CourseLesson) {
   return lesson.slug ? `/lessons/${lesson.slug}` : undefined;
+}
+
+/** 00–30 分页条用的完整序列：前言 00 排在 01–30 前面。 */
+export const allLessonSlots: CourseLesson[] = [prefaceLesson, ...courseLessons];
+
+/** 统计只算正式的 30 课，前言单独报，否则 4+1+25 会凑不出 30。 */
+export const lessonCounts = {
+  total: TOTAL_LESSONS,
+  open: courseLessons.filter((l) => l.status === "open").length,
+  next: courseLessons.filter((l) => l.status === "next").length,
+  planned: courseLessons.filter((l) => l.status === "planned").length,
+  hasPreface: prefaceLesson.status === "open",
+};
+
+/**
+ * 未开放的课按阶段合并，避免首页平铺 26 个空格子。
+ * 阶段边界取自 docs 里那条「真实模型 → 状态与可靠性 → 高级模式 → 产品化」。
+ */
+export const roadmapStages: { label: string; from: number; to: number; theme: string }[] = [
+  { label: "Stage 1", from: 6, to: 11, theme: "模型、API、Streaming 与 Router" },
+  { label: "Stage 2", from: 12, to: 18, theme: "State、Reducer、持久化、审批与回放" },
+  { label: "Stage 3", from: 19, to: 30, theme: "可靠性、高级模式、安全与长期记忆" },
+];
+
+export function lessonsInRange(from: number, to: number) {
+  return courseLessons.filter((l) => l.number >= from && l.number <= to);
 }

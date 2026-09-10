@@ -5,7 +5,8 @@ import { LessonZeroArticleBrief } from "@/components/variants/lesson-zero-articl
 import { LessonOneArticleBrief } from "@/components/variants/lesson-one-article-brief";
 import { LessonTwoArticleBrief } from "@/components/variants/lesson-two-article-brief";
 import { LessonThreeArticleBrief } from "@/components/variants/lesson-three-article-brief";
-import { TOTAL_LESSONS, availableLessons, getLessonBySlug } from "@/lib/course";
+import { LessonCourseStrip } from "@/components/lesson-course-strip";
+import { availableLessons, getLessonBySlug } from "@/lib/course";
 
 type BriefPageProps = { params: Promise<{ slug: string }> };
 
@@ -47,24 +48,21 @@ export default async function LessonBriefPage({ params }: BriefPageProps) {
       <header className="topbar">
         <Link className="brand" href="/" aria-label="Agent Hands-on Lab 课程目录">
           <span className="brand-mark">A</span>
-          <span>Agent Hands-on Lab</span>
+          <span className="brand-text">
+            <span className="brand-name">Agent Hands-on Lab</span>
+            <span className="brand-tagline">读一段，动一步，真正看懂 Agent</span>
+          </span>
         </Link>
-        <Link className="catalog-link" href="/#curriculum">全部课程</Link>
+        <nav className="topnav lesson-topnav" aria-label="课程导航">
+          <Link href="/#curriculum">课程大纲</Link>
+          <a href="https://github.com/EthanBAI-dev/Agent-Engineering-Handbook" rel="noopener noreferrer" target="_blank">GitHub 仓库</a>
+        </nav>
         <span className="progress-label">精简版 · 第 {number} 课</span>
       </header>
 
-      <div className="lesson-page-grid">
-        <aside className="lesson-side-index">
-          <Link href="/#curriculum">← 课程目录</Link>
-          <p>精简版</p>
-          <strong>{number}</strong>
-          <span>{lesson.shortTitle}</span>
-          <div className="side-progress">
-            <i style={{ width: `${lesson.number === 0 ? 2 : (lesson.number / TOTAL_LESSONS) * 100}%` }} />
-          </div>
-          <small>FREE TIER</small>
-        </aside>
+      <LessonCourseStrip current={lesson.number} tier="brief" />
 
+      <div className="lesson-page-grid">
         <div className="lesson-page-content">
           <div className="tier-banner">
             <div>
