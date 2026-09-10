@@ -35,6 +35,11 @@ uv run python examples/01_hello_graph.py
 | [`06_messages.py`](examples/06_messages.py) | 消息类型、Prompt 到底是什么，**哪些决定归模型、哪些归代码** | 否 |
 | [`09_streaming.py`](examples/09_streaming.py) | 三种 `stream_mode` 的区别，以及 `messages` 流为什么必须按节点过滤 | 否 |
 | [`10_budget.py`](examples/10_budget.py) | 单次请求的调用上限：模型不会自己停 | 否 |
+| [`11_router.py`](examples/11_router.py) | 结构化输出 + 白名单校验，模型给非法类别也不会崩 | 否 |
+| [`12_state_schema.py`](examples/12_state_schema.py) | 两种**静默失败**，以及 `input_schema` / `output_schema` | 否 |
+| [`13_reducers.py`](examples/13_reducers.py) | 并行写同字段的 `InvalidUpdateError`，自定义 reducer | 否 |
+| [`14_long_messages.py`](examples/14_long_messages.py) | `trim_messages`、过滤与总结三种取舍 | 否 |
+| [`15_persistence.py`](examples/15_persistence.py) | SqliteSaver：**真的开一个子进程**验证跨进程持久化 | 否 |
 
 建议顺序就是 01 → 04。**别跳过 01** —— 02 之后的一切都只是给 01 那张图加节点。
 
@@ -72,12 +77,20 @@ model = ScriptedModel(script=[
 写 Agent 时消息必须累加，所以内置的 `MessagesState` 用 `add_messages` 做 reducer。
 搞错这个，Agent 会「只记得最后一句话」。
 
-**3. human-in-the-loop 必须配 checkpointer**
+**3. State 里写错字段名不会报错**
+`{"answr": ...}` 拼错一个字母，没有异常、没有警告，只是什么都不发生。
+排查「结果没变化」时，先怀疑字段名，再怀疑模型。见 `12_state_schema.py`。
+
+**4. `stream_mode="messages"` 里混着 ToolMessage**
+照单全收会把工具的原始返回拼进用户看到的答案里，必须按 `langgraph_node` 过滤。
+见 `09_streaming.py`。
+
+**5. human-in-the-loop 必须配 checkpointer**
 `interrupt()` 让图暂停，但「停在哪、state 是什么」得有地方存。
 `compile()` 不传 checkpointer 的话，恢复无从谈起。
 
 ## 状态
 
-- 01、04、06、09、10 已在本机实跑通过（无需 key）。
+- 01、04、06、09、10、11、12、13、14、15 已在本机实跑通过（无需 key）。
 - 02、03 已验证能正确构图（`compile()` + 节点检查），**真实 LLM 调用待填 key 后验证**。
 - 06 之后的例子统一使用 `_fake.py`，因此不需要 key 也能得到确定结果。

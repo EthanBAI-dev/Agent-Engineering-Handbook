@@ -16,6 +16,7 @@ ToolNode、checkpointer——全都是真的 LangGraph 在跑。
 
 from __future__ import annotations
 
+import uuid
 from typing import Any, Iterator, Sequence
 
 from langchain_core.callbacks import CallbackManagerForLLMRun
@@ -61,6 +62,13 @@ class ScriptedModel(BaseChatModel):
     calls: int = 0
     serial: int = 0
     bound_tools: list[str] = []
+    # 每个实例一个前缀。两个模型实例给出相同的消息 id 时，add_messages 会把后来的
+    # 当成「更新那条旧消息」，于是新回答会覆盖旧回答——同一个 thread 里尤其致命。
+    run_id: str = ""
+
+    def model_post_init(self, __context: Any) -> None:
+        if not self.run_id:
+            self.run_id = uuid.uuid4().hex[:8]
 
     @property
     def _llm_type(self) -> str:
@@ -82,9 +90,9 @@ class ScriptedModel(BaseChatModel):
         message = self.script[self.calls]
         self.calls += 1
         self.serial += 1
-        # 每次都给一个新 id。add_messages 按 id 合并：把同一个消息对象重复交回去，
-        # 会被当成「更新那条旧消息」而不是「追加一条新消息」。
-        return message.model_copy(update={"id": f"scripted-{self.serial}"})
+        # 每次都给一个全局唯一的 id。add_messages 按 id 合并：id 撞了就是「更新」，
+        # 不是「追加」。
+        return message.model_copy(update={"id": f"scripted-{self.run_id}-{self.serial}"})
 
     def _generate(
         self,

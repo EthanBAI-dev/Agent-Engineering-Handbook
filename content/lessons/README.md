@@ -1,6 +1,6 @@
 # Agent Hands-on Lab · 课程文稿索引
 
-> 状态：00–10 已有草稿，11–30 待写 ｜ 更新时间：2026-09-10
+> 状态：00–15 已有草稿，16–30 待写 ｜ 更新时间：2026-09-10
 
 完整 01–30 课程顺序及外部来源映射见 [`course-dev/30-lesson-curriculum-map.md`](../../course-dev/30-lesson-curriculum-map.md)。第 00 课是前言，不计入正式 30 课。
 
@@ -17,6 +17,11 @@
 | 08 | [建立 /api/agent](08-agent-api-and-deploy.md) | 一次请求怎样走完全程？ | 设计稿，未部署 | 已写、未验证 |
 | 09 | [Streaming](09-streaming.md) | 该给用户看哪一种事件？ | `09_streaming.py` | 已写、已实跑 |
 | 10 | [调用限额与成本](10-quota-and-cost.md) | 谁来让循环停下来？ | `10_budget.py` | 已写、已实跑 |
+| 11 | [Router 与结构化输出](11-router-and-structured-output.md) | 分支键能不能信模型？ | `11_router.py` | 已写、已实跑 |
+| 12 | [State Schema](12-state-schema.md) | 字段写错了为什么不报错？ | `12_state_schema.py` | 已写、已实跑 |
+| 13 | [Reducer 与合并](13-reducers-and-merging.md) | 并行改同一个字段谁说了算？ | `13_reducers.py` | 已写、已实跑 |
+| 14 | [上下文管理](14-context-management.md) | 消息太长该丢哪些？ | `14_long_messages.py` | 已写、已实跑 |
+| 15 | [持久化会话](15-persistent-sessions.md) | 换个进程还记不记得？ | `15_persistence.py` | 已写、已实跑（含子进程验证） |
 
 ## 内容约定
 
