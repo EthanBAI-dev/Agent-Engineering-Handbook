@@ -16,7 +16,7 @@ tested_with: "LangGraph 1.2.11"
 
 `interrupt()` 把问题交给图外的人，checkpointer 保存现场；人类回答后，再用 `Command(resume=...)`（恢复命令）和同一个 `thread_id`（会话标识）恢复。
 
-其中，interrupt暂停当前流程；checkpointer保存暂停现场；thread_id定位原来的会话；Command(resume=...)把人的决定送回流程。
+`interrupt()` 暂停当前流程；checkpointer 保存暂停现场；`thread_id` 定位原来的会话；`Command(resume=...)` 把人的决定送回流程。
 
 真正的人工审批不是弹出一个确认框，而是让后端执行流程能够安全地停住。
 
@@ -26,7 +26,7 @@ tested_with: "LangGraph 1.2.11"
 
 这里的 Agent 会提出动作并沿图推进，但它不能绕过审批节点直接执行删除。
 
-它根据目标提出下一步动作；是否允许执行危险动作仍由图和人类审批控制。
+Agent 根据目标提出下一步动作；是否允许执行危险动作仍由图和人类审批控制。
 
 网页当然可以显示“批准”和“拒绝”两个按钮。但如果后端图没有暂停，按钮出现时删除动作可能已经执行了。
 
@@ -40,7 +40,7 @@ tested_with: "LangGraph 1.2.11"
 
 在 LangGraph（智能体流程编排框架）里，checkpoint（状态快照）保存申请现场，`thread_id` 标记是哪一笔流程，resume（恢复值）就是审批人的决定。
 
-其中，LangGraph在暂停后保留可继续运行的流程结构；checkpoint保存申请暂停时的现场；resume携带审批人的决定来恢复流程。
+LangGraph 在暂停后保留可继续运行的流程结构；checkpoint 保存申请暂停时的现场；resume 携带审批人的决定来恢复流程。
 
 这个比喻的边界是：课程示例只有 yes/no。真实审批还要记录审批人身份、时间、理由和权限。
 
@@ -56,11 +56,11 @@ START → propose → approval → report → END
 
 这里的 `START`（图入口）和 `END`（图出口）不是业务节点。
 
-其中，START启动流程；END标记流程完成。
+`START` 启动流程；`END` 标记流程完成。
 
 `propose`（提议节点）、`approval`（审批节点）和 `report`（报告节点）组成了本课的业务流程。
 
-其中，propose说明 Agent 打算做什么；approval把问题交给人类并等待决定；report在流程恢复后整理并输出结果。
+`propose` 说明 Agent 打算做什么；`approval` 把问题交给人类并等待决定；`report` 在流程恢复后整理并输出结果。
 
 本课代码不会真的删除任何文件。它只把“已删除”或“已取消”写进字符串，用来安全演示控制流。
 
@@ -74,11 +74,11 @@ class State(TypedDict):
 
 这段代码使用了 `TypedDict`（类型字典）。
 
-它声明 State 必须包含哪些字段以及字段类型。
+`TypedDict` 声明 State 必须包含哪些字段以及字段类型。
 
 State 中的 `path`（文件路径）和 `result`（处理结果）记录了这次审批的数据。
 
-其中，State让暂停前后的节点共享同一份现场；path保存准备处理的文件路径；result保存批准或拒绝后的处理结果。
+State 让暂停前后的节点共享同一份现场；`path` 保存准备处理的文件路径；`result` 保存批准或拒绝后的处理结果。
 
 真实产品还会增加 `requested_by`、`approved_by`、`reason` 和时间戳。但这些字段属于审计与账号系统，本课先不扩展。
 
@@ -101,7 +101,7 @@ def approval(state: State) -> dict:
 
 这里传出问题和输入类型，网页或命令行就能据此显示审批界面。这个 payload（中断载荷）应该使用可序列化数据，不要把数据库连接、函数或复杂对象塞进去。
 
-它把审批界面需要的问题、路径和输入类型送到图外。
+payload 把审批界面需要的问题、路径和输入类型送到图外。
 
 第一次执行到 `interrupt()` 时，`answer` 还不存在。LangGraph 保存 State，并把中断信息返回给调用者。
 
@@ -120,7 +120,7 @@ app = graph.compile(checkpointer=InMemorySaver())
 
 这里使用了 `compile`（编译图）和 `InMemorySaver`（内存检查点保存器）。
 
-其中，compile把节点、边和保存机制组合成可运行的应用；InMemorySaver把教学实验的 checkpoint 临时保存在当前进程中。
+`compile` 把节点、边和保存机制组合成可运行的应用；`InMemorySaver` 把教学实验的 checkpoint 临时保存在当前进程中。
 
 调用时也必须提供 `thread_id`：
 
@@ -134,7 +134,7 @@ cfg = {"configurable": {"thread_id": "t1"}}
 
 下面这次 `invoke` 调用不会完整执行：
 
-它启动或恢复一次图运行，并运行到结束或暂停位置。
+`invoke` 启动或恢复一次图运行，并运行到结束或暂停位置。
 
 ```python
 out = app.invoke(
@@ -220,7 +220,7 @@ def approval(state: State):
 
 它不调用模型，也不执行真实删除，所以不需要 API Key（接口密钥）。在 `lab/langgraph` 目录运行：
 
-它验证程序是否有权调用模型服务；本课没有模型调用，所以不需要配置。
+API Key 用来验证程序是否有权调用模型服务；本课没有模型调用，所以不需要配置。
 
 ```powershell
 uv run python examples/04_human_in_loop.py
@@ -266,7 +266,7 @@ checkpointer 负责保存和恢复，不负责验证审批人身份，也不阻�
 
 拒绝应该有清晰的安全路径：更新状态、记录原因、取消动作，然后正常结束或返回 model（模型节点）重新规划。
 
-它根据拒绝结果选择新的处理方式。
+model 根据拒绝结果选择新的处理方式。
 
 ### “副作用放在 interrupt 前后都一样”
 
@@ -288,7 +288,7 @@ checkpointer 负责保存和恢复，不负责验证审批人身份，也不阻�
 
 第 05 课不再增加新 API（应用程序编程接口）。下一课只组合现有能力，并标出教学版与生产版之间还差什么。
 
-它让不同程序或服务交换请求与结果。
+API 让不同程序或服务交换请求与结果。
 
 [进入第 05 课：把四块拼成第一个完整 Agent](05-complete-agent-blueprint.md)
 
