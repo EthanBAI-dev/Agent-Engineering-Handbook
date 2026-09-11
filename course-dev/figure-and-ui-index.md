@@ -4,7 +4,7 @@
 > 每一项的完整需求（画什么、必须标注、不要出现、替代文本、通过条件）写在课程正文里它该出现的位置，
 > 写法规范见 [`docs/04-figure-and-ui-spec.md`](../docs/04-figure-and-ui-spec.md)。
 
-当前共 **37 张配图**（全部待制作）、**31 个互动实验**（9 个已实现，22 个待开发）。
+当前共 **37 张配图**（全部待制作）、**31 个互动实验**（13 个已实现，18 个待开发）。
 
 ## 配图
 
@@ -61,10 +61,10 @@
 | `U06-1` | 06 | 把每个决定分给模型或代码 | 已实现 · `apps/web/src/components/lesson-six-article.tsx`（用 `lab-kit` 的 ClassifyLab） |
 | `U07-1` | 07 | 密钥该放在哪一层 | 已实现 · `apps/web/src/components/lesson-seven-article.tsx`（用 `lab-kit` 的 ScenarioLab） |
 | `U08-1` | 08 | 把请求路径排回去 | 已实现 · `apps/web/src/components/lesson-eight-article.tsx`（用 `lab-kit` 的 OrderLab） |
-| `U09-1` | 09 | 给同一次运行换粒度 | 待开发 · 建议 `apps/web/src/components/lesson-nine-lab.tsx` |
-| `U10-1` | 10 | 调上限，看两条路径 | 待开发 · 建议 `apps/web/src/components/lesson-ten-lab.tsx` |
-| `U11-1` | 11 | 让路由挡住三种坏输入 | 待开发 · 建议 `apps/web/src/components/lesson-eleven-lab.tsx` |
-| `U12-1` | 12 | 找出消失的字段 | 待开发 · 建议 `apps/web/src/components/lesson-twelve-lab.tsx` |
+| `U09-1` | 09 | 给同一次运行换粒度 | 已实现 · `apps/web/src/components/lesson-nine-article.tsx`（ScenarioLab） |
+| `U10-1` | 10 | 调上限，看两条路径 | 已实现 · `apps/web/src/components/lesson-ten-article.tsx`（ScenarioLab） |
+| `U11-1` | 11 | 让路由挡住三种坏输入 | 已实现 · `apps/web/src/components/lesson-eleven-article.tsx`（ScenarioLab） |
+| `U12-1` | 12 | 找出消失的字段 | 已实现 · `apps/web/src/components/lesson-twelve-article.tsx`（ClassifyLab） |
 | `U13-1` | 13 | 给四个字段各配一条规则 | 待开发 · 建议 `apps/web/src/components/lesson-thirteen-lab.tsx` |
 | `U14-1` | 14 | 在预算内保住关键事实 | 待开发 · 建议 `apps/web/src/components/lesson-fourteen-lab.tsx` |
 | `U15-1` | 15 | 重启之后还在不在 | 待开发 · 建议 `apps/web/src/components/lesson-fifteen-lab.tsx` |
