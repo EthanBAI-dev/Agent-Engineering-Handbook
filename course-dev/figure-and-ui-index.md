@@ -4,7 +4,7 @@
 > 每一项的完整需求（画什么、必须标注、不要出现、替代文本、通过条件）写在课程正文里它该出现的位置，
 > 写法规范见 [`docs/04-figure-and-ui-spec.md`](../docs/04-figure-and-ui-spec.md)。
 
-当前共 **37 张配图**（全部待制作）、**31 个互动实验**（13 个已实现，18 个待开发）。
+当前共 **37 张配图**（全部待制作）、**31 个互动实验**（17 个已实现，14 个待开发）。
 
 ## 配图
 
@@ -65,10 +65,10 @@
 | `U10-1` | 10 | 调上限，看两条路径 | 已实现 · `apps/web/src/components/lesson-ten-article.tsx`（ScenarioLab） |
 | `U11-1` | 11 | 让路由挡住三种坏输入 | 已实现 · `apps/web/src/components/lesson-eleven-article.tsx`（ScenarioLab） |
 | `U12-1` | 12 | 找出消失的字段 | 已实现 · `apps/web/src/components/lesson-twelve-article.tsx`（ClassifyLab） |
-| `U13-1` | 13 | 给四个字段各配一条规则 | 待开发 · 建议 `apps/web/src/components/lesson-thirteen-lab.tsx` |
-| `U14-1` | 14 | 在预算内保住关键事实 | 待开发 · 建议 `apps/web/src/components/lesson-fourteen-lab.tsx` |
-| `U15-1` | 15 | 重启之后还在不在 | 待开发 · 建议 `apps/web/src/components/lesson-fifteen-lab.tsx` |
-| `U16-1` | 16 | 给八个工具分级 | 待开发 · 建议 `apps/web/src/components/lesson-sixteen-lab.tsx` |
+| `U13-1` | 13 | 给字段配一条合并规则 | 已实现 · `apps/web/src/components/lesson-thirteen-article.tsx`（ScenarioLab） |
+| `U14-1` | 14 | 在预算内保住关键事实 | 已实现 · `apps/web/src/components/lesson-fourteen-article.tsx`（ScenarioLab） |
+| `U15-1` | 15 | 重启之后还在不在 | 已实现 · `apps/web/src/components/lesson-fifteen-article.tsx`（ScenarioLab） |
+| `U16-1` | 16 | 给八个工具分级 | 已实现 · `apps/web/src/components/lesson-sixteen-article.tsx`（ClassifyLab） |
 | `U17-1` | 17 | 三种反应 | 待开发 · 建议 `apps/web/src/components/lesson-seventeen-lab.tsx` |
 | `U18-1` | 18 | 找出分岔点 | 待开发 · 建议 `apps/web/src/components/lesson-eighteen-lab.tsx` |
 | `U19-1` | 19 | 让重试变安全 | 待开发 · 建议 `apps/web/src/components/lesson-nineteen-lab.tsx` |

@@ -137,11 +137,11 @@ app = graph.compile(checkpointer=SqliteSaver.from_conn_string(path))
 这两种情况在用户看来都是「它忘了我」，但排查方向完全相反。
 
 > **互动 U15-1｜重启之后还在不在**
-> **状态**：待开发 · 建议 `apps/web/src/components/lesson-fifteen-lab.tsx`
-> **用户做什么**：发消息 → 点「重启进程」→ 看历史还在不在；再切换 thread 对比。
-> **屏幕上变什么**：切到内存存储时重启会清空；切到文件存储时保留；换 thread 则显示另一段历史。
-> **通过条件**：说出「数据没了」和「数据在但不属于这个 thread」的区别——用户看到的都是「它忘了我」。
-> **小屏**：存储切换与重启按钮并排置顶。
+> **状态**：已实现 · `apps/web/src/components/lesson-fifteen-article.tsx`（ScenarioLab）
+> **用户做什么**：切换 checkpointer（内存／SQLite）、开关「重启进程」、切换读哪个 thread。
+> **屏幕上变什么**：消息数与「用户看到什么」实时更新，并额外给出一行「真正的原因」——区分数据没了和数据不属于这个 thread。
+> **通过条件**：换成文件存储并重启后 thread a 的历史还在。
+> **小屏**：三组控件纵向排列。
 
 ## 自己运行真实代码
 

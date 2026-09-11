@@ -12,6 +12,10 @@ import { LessonNineArticle } from "@/components/lesson-nine-article";
 import { LessonTenArticle } from "@/components/lesson-ten-article";
 import { LessonElevenArticle } from "@/components/lesson-eleven-article";
 import { LessonTwelveArticle } from "@/components/lesson-twelve-article";
+import { LessonThirteenArticle } from "@/components/lesson-thirteen-article";
+import { LessonFourteenArticle } from "@/components/lesson-fourteen-article";
+import { LessonFifteenArticle } from "@/components/lesson-fifteen-article";
+import { LessonSixteenArticle } from "@/components/lesson-sixteen-article";
 
 /**
  * 课号 → 正文组件。
@@ -33,4 +37,8 @@ export const lessonArticles: Record<number, ComponentType> = {
   10: LessonTenArticle,
   11: LessonElevenArticle,
   12: LessonTwelveArticle,
+  13: LessonThirteenArticle,
+  14: LessonFourteenArticle,
+  15: LessonFifteenArticle,
+  16: LessonSixteenArticle,
 };
