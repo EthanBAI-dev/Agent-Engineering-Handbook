@@ -2,7 +2,7 @@
 title: "长期记忆与毕业项目：记住这个人，而不只是这段对话"
 slug: "30-long-term-memory"
 order: 30
-status: "draft"
+status: "published"
 interactive: "three-layer-memory"
 verified_at: "2026-09-10"
 runtime_note: "跨 thread 记忆、跨用户隔离与重复事实去重均已在 langgraph 1.2.11 实跑验证；不需要 API Key"
@@ -156,7 +156,7 @@ uv run python examples/30_long_term_memory.py
 事实提取用关键词而不是模型，为的是可复现。换成真实模型后，这一步的质量成了变量——那时要用第 27 课的数据集评估它提取得准不准。
 
 > **互动 U30-1｜三层记忆各管一段**
-> **状态**：待开发 · 建议 `apps/web/src/components/lesson-thirty-lab.tsx`
+> **状态**：已实现 · `apps/web/src/components/lesson-thirty-article.tsx`（ClassifyLab）
 > **用户做什么**：面对同一用户的三段对话，判断每次「它记不记得」由哪一层决定。
 > **屏幕上变什么**：选完高亮对应的那一层，并显示该层此刻实际存了什么。
 > **通过条件**：三种「忘了」都能指出病因在哪一层，并说出各自的修法不同在哪。

@@ -2,7 +2,7 @@
 title: "Agentic RAG：让它答「不知道」，比让它答得漂亮更难"
 slug: "26-search-and-rag"
 order: 26
-status: "draft"
+status: "published"
 interactive: "cite-or-refuse"
 verified_at: "2026-09-10"
 runtime_note: "命中、落空、反面示范三条路径均已在 langgraph 1.2.11 实跑验证；检索用关键词以保证可复现，不需要 API Key"
@@ -127,7 +127,7 @@ def route(state: State) -> str:
 通过条件：说出第三种为什么最危险，以及要在哪一步才能挡住它。
 
 > **互动 U26-1｜三个问题，三种结果**
-> **状态**：待开发 · 建议 `apps/web/src/components/lesson-twentysix-lab.tsx`
+> **状态**：已实现 · `apps/web/src/components/lesson-twentysix-article.tsx`（ScenarioLab）
 > **用户做什么**：依次问三个问题——库里有的、库里没有的、库里有但已过期的。
 > **屏幕上变什么**：答案下方显示引用卡片，可展开看原文；过期那条的引用卡片带一个版本标记。
 > **通过条件**：说出第三种为什么最危险，以及要在哪一步才能挡住它。

@@ -86,11 +86,11 @@ const definedLessons: CourseLesson[] = [
   { number: 23, slug: "23-subgraph", title: "Subgraph：把复杂图拆成部件", shortTitle: "Subgraph", description: "封装并复用子流程。", status: "open", duration: "9 分钟" },
   { number: 24, slug: "24-planner-executor", title: "Planner–Executor：先规划再执行", shortTitle: "Planner–Executor", description: "检查计划并在失败后重排。", status: "open", duration: "9 分钟" },
   { number: 25, slug: "25-multi-agent", title: "Multi-Agent：什么时候才需要多个 Agent", shortTitle: "Multi-Agent", description: "判断多角色协作是否值得。", status: "open", duration: "8 分钟" },
-  { number: 26, title: "Search 与 Agentic RAG", shortTitle: "Search 与 RAG", description: "检索外部知识并标注来源。", status: "next" },
-  { number: 27, title: "测试、Evaluation 与 Observability", shortTitle: "评测与观测", description: "用数据集定位失败路径。", status: "planned" },
-  { number: 28, title: "工具权限、提示注入与安全边界", shortTitle: "安全边界", description: "阻止越权调用和恶意输入。", status: "planned" },
-  { number: 29, title: "账号、身份与数据隔离", shortTitle: "账号与隔离", description: "确保用户不能读取他人会话。", status: "planned" },
-  { number: 30, title: "数据库、长期记忆与毕业项目", shortTitle: "长期记忆", description: "跨会话保存资料并完成最终验收。", status: "planned" },
+  { number: 26, slug: "26-search-and-rag", title: "Search 与 Agentic RAG", shortTitle: "Search 与 RAG", description: "检索外部知识并标注来源。", status: "open", duration: "9 分钟" },
+  { number: 27, slug: "27-eval-and-observability", title: "测试、Evaluation 与 Observability", shortTitle: "评测与观测", description: "用数据集定位失败路径。", status: "open", duration: "9 分钟" },
+  { number: 28, slug: "28-security-boundaries", title: "工具权限、提示注入与安全边界", shortTitle: "安全边界", description: "阻止越权调用和恶意输入。", status: "open", duration: "10 分钟" },
+  { number: 29, slug: "29-identity-and-isolation", title: "账号、身份与数据隔离", shortTitle: "账号与隔离", description: "确保用户不能读取他人会话。", status: "open", duration: "9 分钟" },
+  { number: 30, slug: "30-long-term-memory", title: "数据库、长期记忆与毕业项目", shortTitle: "长期记忆", description: "跨会话保存资料并完成最终验收。", status: "open", duration: "12 分钟" },
 ];
 
 export const courseLessons: CourseLesson[] = Array.from(

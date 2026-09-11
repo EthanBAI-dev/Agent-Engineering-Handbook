@@ -2,7 +2,7 @@
 title: "评测与可观测：「感觉变好了」不是证据"
 slug: "27-eval-and-observability"
 order: 27
-status: "draft"
+status: "published"
 interactive: "regression-hunt"
 verified_at: "2026-09-10"
 runtime_note: "三个版本在同一数据集上的通过率与回归定位已实跑验证；不需要 API Key"
@@ -142,7 +142,7 @@ v2：6/8
 通过条件：找出被弄坏的两个，并根据它们的运行路径判断病因在检索还是在生成。
 
 > **互动 U27-1｜找出被弄坏的那一条**
-> **状态**：待开发 · 建议 `apps/web/src/components/lesson-twentyseven-lab.tsx`
+> **状态**：已实现 · `apps/web/src/components/lesson-twentyseven-article.tsx`（ScenarioLab）
 > **用户做什么**：面对两个总分相同（6/8）的版本，找出被弄坏的两条。
 > **屏幕上变什么**：勾选后展开该例的运行路径，标出病因在检索还是在生成。
 > **通过条件**：找出两条回归，并根据运行路径判断各自的病因。

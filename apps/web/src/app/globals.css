@@ -557,7 +557,7 @@ code { font-family: var(--font-code); }
 .kit-outcome { margin: 0 22px 16px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
 .kit-rows { padding: 15px 17px; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--surface-container); }
 .kit-rows dl { margin: 10px 0 0; display: grid; gap: 7px; }
-.kit-rows dl > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--line-muted); }
+.kit-rows dl > div { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 12px; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--line-muted); }
 .kit-rows dl > div:last-child { border-bottom: 0; }
 .kit-rows dt { color: var(--muted); font-size: 13px; }
 .kit-rows dd { margin: 0; font: 700 13px var(--font-code); text-align: right; overflow-wrap: anywhere; }
@@ -1047,6 +1047,8 @@ a.open-lesson-card:hover { transform: translateY(-2px); box-shadow: var(--e2); b
   .kit-prompt, .kit-classify, .kit-controls, .kit-outcome, .kit-order, .kit-verdict { margin-inline: 12px; }
   .kit-control { grid-template-columns: 1fr; gap: 6px; }
   .kit-outcome { grid-template-columns: 1fr; }
+  .kit-rows dl > div { grid-template-columns: 1fr; gap: 3px; }
+  .kit-rows dd { text-align: left; }
   .kit-slider input { max-width: none; }
   /* 术语浮层在窄屏改成底部浮条：靠词定位会顶出视口，触屏上也更难点中 */
   .term-popover {

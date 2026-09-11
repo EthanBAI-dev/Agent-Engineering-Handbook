@@ -2,7 +2,7 @@
 title: "工具权限与提示注入：外部内容不是指令"
 slug: "28-security-boundaries"
 order: 28
-status: "draft"
+status: "published"
 interactive: "injection-defense"
 verified_at: "2026-09-10"
 runtime_note: "路径穿越的拦截与工具白名单行为已在 langgraph 1.2.11 实跑验证；不需要 API Key"
@@ -168,7 +168,7 @@ ALLOWED_TOOLS = {"read_file", "list_dir"}
 通过条件：说出为什么单独第一层不够，以及第二层挡不住什么（提示：它挡不住清单里那些**本来就允许**的工具被误用）。
 
 > **互动 U28-1｜三种注入，三层防线**
-> **状态**：待开发 · 建议 `apps/web/src/components/lesson-twentyeight-lab.tsx`
+> **状态**：已实现 · `apps/web/src/components/lesson-twentyeight-article.tsx`（ScenarioLab）
 > **用户做什么**：逐层打开三道防线，用三段被投毒的网页内容各试一次。
 > **屏幕上变什么**：只开第一层时其中一段成功诱导出工具调用并标红；开到第二层时调用被拒绝；
 > 三层全开时停在审批界面。

@@ -2,7 +2,7 @@
 title: "账号与数据隔离：thread_id 不是身份验证"
 slug: "29-identity-and-isolation"
 order: 29
-status: "draft"
+status: "published"
 interactive: "two-accounts"
 verified_at: "2026-09-10"
 runtime_note: "越权读取与加上归属检查后的拒绝行为均已在 langgraph 1.2.11 + SqliteSaver 实跑验证；不需要 API Key"
@@ -146,7 +146,7 @@ def memory_ns(user_id: str) -> tuple[str, ...]:
 通过条件：四个入口都挡住越权，并说出漏掉后两个会造成什么后果（提示：批准别人的删除操作）。
 
 > **互动 U29-1｜用两个账号试一次**
-> **状态**：待开发 · 建议 `apps/web/src/components/lesson-twentynine-lab.tsx`
+> **状态**：已实现 · `apps/web/src/components/lesson-twentynine-article.tsx`（ScenarioLab）
 > **用户做什么**：在两个账号之间切换，尝试四个入口：读历史、发消息、批准中断、回到旧快照。
 > **屏幕上变什么**：未加检查的入口直接返回对方数据并标红；加了检查的返回同一句「找不到这个会话」。
 > **通过条件**：四个入口都挡住越权，并说出漏掉后两个会造成什么后果。

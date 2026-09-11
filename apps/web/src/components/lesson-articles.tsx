@@ -25,6 +25,11 @@ import { LessonTwentyTwoArticle } from "@/components/lesson-twentytwo-article";
 import { LessonTwentyThreeArticle } from "@/components/lesson-twentythree-article";
 import { LessonTwentyFourArticle } from "@/components/lesson-twentyfour-article";
 import { LessonTwentyFiveArticle } from "@/components/lesson-twentyfive-article";
+import { LessonTwentySixArticle } from "@/components/lesson-twentysix-article";
+import { LessonTwentySevenArticle } from "@/components/lesson-twentyseven-article";
+import { LessonTwentyEightArticle } from "@/components/lesson-twentyeight-article";
+import { LessonTwentyNineArticle } from "@/components/lesson-twentynine-article";
+import { LessonThirtyArticle } from "@/components/lesson-thirty-article";
 
 /**
  * 课号 → 正文组件。
@@ -59,4 +64,9 @@ export const lessonArticles: Record<number, ComponentType> = {
   23: LessonTwentyThreeArticle,
   24: LessonTwentyFourArticle,
   25: LessonTwentyFiveArticle,
+  26: LessonTwentySixArticle,
+  27: LessonTwentySevenArticle,
+  28: LessonTwentyEightArticle,
+  29: LessonTwentyNineArticle,
+  30: LessonThirtyArticle,
 };
