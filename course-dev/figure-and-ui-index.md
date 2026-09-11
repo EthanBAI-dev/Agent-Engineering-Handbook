@@ -4,7 +4,7 @@
 > 每一项的完整需求（画什么、必须标注、不要出现、替代文本、通过条件）写在课程正文里它该出现的位置，
 > 写法规范见 [`docs/04-figure-and-ui-spec.md`](../docs/04-figure-and-ui-spec.md)。
 
-当前共 **37 张配图**（全部待制作）、**31 个互动实验**（5 个已实现，26 个待开发）。
+当前共 **37 张配图**（全部待制作）、**31 个互动实验**（6 个已实现，25 个待开发）。
 
 ## 配图
 
@@ -57,7 +57,7 @@
 | `U02-1` | 02 | 跟着一条消息走完闭环 | 已实现 · `apps/web/src/components/lesson-two-lab.tsx` |
 | `U03-1` | 03 | 把三条消息分配到正确的 thread | 已实现 · `apps/web/src/components/lesson-three-lab.tsx` |
 | `U04-1` | 04 | 批准一条，拒绝一条 | 已实现 · `apps/web/src/components/lesson-four-lab.tsx` |
-| `U05-1` | 05 | 把打乱的卡片排回去 | 待开发 · 建议 `apps/web/src/components/lesson-five-lab.tsx` |
+| `U05-1` | 05 | 把打乱的卡片排回去 | 已实现 · `apps/web/src/components/lesson-five-lab.tsx` |
 | `U06-1` | 06 | 把每个决定分给模型或代码 | 待开发 · 建议 `apps/web/src/components/lesson-six-lab.tsx` |
 | `U07-1` | 07 | 把密钥拖到四个位置 | 待开发 · 建议 `apps/web/src/components/lesson-seven-lab.tsx` |
 | `U08-1` | 08 | 把请求路径排回去 | 待开发 · 建议 `apps/web/src/components/lesson-eight-lab.tsx` |

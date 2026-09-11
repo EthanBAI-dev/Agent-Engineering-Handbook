@@ -480,6 +480,48 @@ code { font-family: var(--font-code); }
 .reject-button { padding: 12px 15px; border: 1px solid #d0a99e !important; border-radius: var(--r-card); color: #8e3520 !important; background: rgba(255,143,114,.14) !important; font-size: 12px; font-weight: 750; cursor: pointer; }
 
 
+/* —— 第 05 课：蓝图拼装 —— */
+.bp-tray { margin: 0 22px 16px; padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--surface-container-low); }
+.bp-cards { margin: 10px 0 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.bp-card { padding: 10px 13px; display: grid; gap: 2px; text-align: left; border: 1px solid var(--line); border-radius: var(--r-btn); background: var(--card); cursor: pointer; transition: .15s ease; }
+.bp-card strong { font: 700 13px var(--font-code); }
+.bp-card small { color: var(--muted); font-size: 11px; }
+.bp-card:hover { border-color: var(--ink); }
+.bp-card.held { border-color: var(--ink); background: var(--lime); box-shadow: var(--e2); }
+.bp-card.held small { color: var(--on-lime); }
+.bp-tray-empty { color: var(--muted); font-size: 13px; }
+.bp-tip { margin: 11px 0 0; color: var(--muted); font-size: 12px; }
+
+.bp-graph { margin: 0 22px 16px; display: grid; gap: 8px; }
+.bp-row { display: grid; grid-template-columns: 170px minmax(0, 1fr); align-items: center; gap: 12px; }
+.bp-from { color: var(--muted); font: 12px var(--font-code); text-align: right; }
+.bp-slot { min-height: 56px; padding: 10px 14px; display: grid; gap: 2px; text-align: left; border: 1px dashed var(--outline); border-radius: var(--r-btn); background: transparent; cursor: pointer; transition: .15s ease; }
+.bp-slot strong { font: 700 13px var(--font-code); }
+.bp-slot small { color: var(--muted); font-size: 11px; }
+.bp-slot .bp-empty { color: var(--muted); font-weight: 600; }
+.bp-slot.droppable { border-color: var(--ink); background: var(--lime-dim); }
+.bp-slot.filled { border-style: solid; border-color: var(--ink); background: var(--card); box-shadow: var(--e1); }
+.bp-row-edge .bp-edge-picker { display: flex; flex-wrap: wrap; gap: 7px; }
+.bp-edge-picker button { padding: 9px 12px; border: 1px solid var(--line); border-radius: var(--r-btn); background: var(--card); color: var(--ink); font: 700 12px var(--font-code); cursor: pointer; }
+.bp-edge-picker button.selected { border-color: var(--ink); background: var(--lime); color: var(--on-lime); }
+
+.bp-switches { margin: 0 22px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.bp-switches label { padding: 13px 15px; display: flex; align-items: flex-start; gap: 11px; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--card); cursor: pointer; }
+.bp-switches label.on { border-color: var(--ink); box-shadow: var(--e1); }
+.bp-switches input { margin-top: 2px; }
+.bp-switches strong { display: block; font: 700 13px var(--font-code); }
+.bp-switches small { color: var(--muted); font-size: 11px; }
+
+.bp-checks { margin: 0 22px 16px; padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--surface-container); }
+.bp-checks ol { margin: 10px 0 0; padding: 0; display: grid; gap: 8px; list-style: none; }
+.bp-checks li { display: grid; grid-template-columns: 20px minmax(0, 1fr); gap: 10px; align-items: start; }
+.bp-checks li > span { width: 20px; height: 20px; display: grid; place-items: center; border-radius: var(--r-dot); border: 1px solid var(--outline); color: var(--muted); font-size: 11px; }
+.bp-checks li.ok > span { border-color: var(--ink); background: var(--lime); color: var(--on-lime); font-weight: 800; }
+.bp-checks strong { font-size: 14px; font-weight: 700; }
+.bp-checks li small { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.bp-checks .answer-feedback { margin-top: 14px; }
+
+
 .zero-flow { min-height: 220px; padding: 54px 24px; display: flex; align-items: center; justify-content: center; overflow-x: auto; background-image: radial-gradient(#cbd1c8 1px, transparent 1px); background-size: 18px 18px; }
 .zero-flow-part { display: flex; align-items: center; }
 .zero-flow-node { width: 112px; min-height: 94px; padding: 14px; display: grid; align-content: space-between; border: 1px solid #b8c1b9; border-radius: var(--r-card); background: var(--card); transition: .2s ease; }
@@ -935,6 +977,11 @@ a.open-lesson-card:hover { transform: translateY(-2px); box-shadow: var(--e2); b
   .approval-graph { margin: 14px 12px; padding: 22px 12px; justify-content: flex-start; }
   .approval-panels, .approval-counters, .approval-log { margin-inline: 12px; }
   .approval-counters { grid-template-columns: 1fr; }
+  .bp-tray, .bp-graph, .bp-switches, .bp-checks { margin-inline: 12px; }
+  .bp-row { grid-template-columns: 1fr; gap: 5px; }
+  .bp-from { text-align: left; }
+  .bp-switches { grid-template-columns: 1fr; }
+  .bp-card { flex: 1 1 100%; }
   /* 术语浮层在窄屏改成底部浮条：靠词定位会顶出视口，触屏上也更难点中 */
   .term-popover {
     position: fixed;

@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { LessonZeroArticle } from "@/components/lesson-zero-article";
-import { LessonOneArticle } from "@/components/lesson-one-article";
-import { LessonTwoArticle } from "@/components/lesson-two-article";
-import { LessonThreeArticle } from "@/components/lesson-three-article";
-import { LessonFourArticle } from "@/components/lesson-four-article";
+import { lessonArticles } from "@/components/lesson-articles";
 import { LessonCourseStrip } from "@/components/lesson-course-strip";
 import {
   TOTAL_LESSONS,
@@ -123,7 +119,7 @@ export default async function LessonPage({ params }: LessonPageProps) {
 
       <div className="lesson-page-grid">
         <div className="lesson-page-content">
-          {lesson.number === 0 ? <LessonZeroArticle /> : lesson.number === 1 ? <LessonOneArticle /> : lesson.number === 2 ? <LessonTwoArticle /> : lesson.number === 3 ? <LessonThreeArticle /> : <LessonFourArticle />}
+          {(() => { const Article = lessonArticles[lesson.number]; return Article ? <Article /> : null; })()}
           <LessonPagination current={lesson.number} />
         </div>
       </div>
