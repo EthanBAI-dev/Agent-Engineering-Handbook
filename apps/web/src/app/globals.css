@@ -522,6 +522,68 @@ code { font-family: var(--font-code); }
 .bp-checks .answer-feedback { margin-top: 14px; }
 
 
+/* —— 互动实验公共构件（lab-kit） —— */
+.kit-prompt { margin: 0 22px 16px; padding: 14px 17px; border-left: 3px solid var(--lime-dim); border-radius: 0 var(--r-btn) var(--r-btn) 0; background: var(--surface-container-low); color: #46534c; font-size: 14px; line-height: 1.7; }
+.kit-prompt p { margin: 0 0 8px; } .kit-prompt p:last-child { margin: 0; }
+
+.kit-classify { margin: 0 22px 16px; padding: 0; display: grid; gap: 10px; list-style: none; }
+.kit-classify li { padding: 14px 16px; display: grid; gap: 9px; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--card); }
+.kit-classify li.ok { border-color: var(--green); }
+.kit-classify li.bad { border-color: var(--coral); }
+.kit-classify-head strong { font-size: 15px; }
+.kit-classify-head small { display: block; margin-top: 3px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.kit-options { display: flex; flex-wrap: wrap; gap: 7px; }
+.kit-options button { padding: 8px 13px; border: 1px solid var(--line); border-radius: var(--r-btn); background: var(--paper); color: var(--ink); font: 700 12px var(--font-ui); cursor: pointer; }
+.kit-options button:hover { border-color: var(--ink); }
+.kit-options button.picked-ok { border-color: var(--ink); background: var(--lime); color: var(--on-lime); }
+.kit-options button.picked-bad { border-color: var(--tertiary); background: var(--tertiary-container); color: var(--tertiary); }
+.kit-why { margin: 0; display: grid; grid-template-columns: 16px 1fr; gap: 8px; color: var(--muted); font-size: 12.5px; line-height: 1.6; }
+.kit-why > span { font-weight: 800; }
+.kit-classify li.ok .kit-why > span { color: var(--green); }
+.kit-classify li.bad .kit-why > span { color: var(--tertiary); }
+
+.kit-controls { margin: 0 22px 16px; display: grid; gap: 12px; }
+.kit-control { display: grid; grid-template-columns: 170px minmax(0, 1fr); align-items: center; gap: 14px; }
+.kit-control-label { color: var(--muted); font-size: 13px; }
+.kit-segmented { display: flex; flex-wrap: wrap; gap: 6px; }
+.kit-segmented button { padding: 9px 13px; border: 1px solid var(--line); border-radius: var(--r-btn); background: var(--card); color: var(--ink); font: 700 12px var(--font-ui); cursor: pointer; }
+.kit-segmented button.selected { border-color: var(--ink); background: var(--lime); color: var(--on-lime); }
+.kit-switch { display: inline-flex; align-items: center; gap: 9px; padding: 9px 13px; border: 1px solid var(--line); border-radius: var(--r-btn); background: var(--card); font-size: 13px; cursor: pointer; width: max-content; }
+.kit-switch.on { border-color: var(--ink); box-shadow: var(--e1); }
+.kit-slider { display: flex; align-items: center; gap: 12px; }
+.kit-slider input { flex: 1 1 200px; max-width: 320px; }
+.kit-slider b { min-width: 74px; font: 700 13px var(--font-code); }
+
+.kit-outcome { margin: 0 22px 16px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; }
+.kit-rows { padding: 15px 17px; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--surface-container); }
+.kit-rows dl { margin: 10px 0 0; display: grid; gap: 7px; }
+.kit-rows dl > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--line-muted); }
+.kit-rows dl > div:last-child { border-bottom: 0; }
+.kit-rows dt { color: var(--muted); font-size: 13px; }
+.kit-rows dd { margin: 0; font: 700 13px var(--font-code); text-align: right; overflow-wrap: anywhere; }
+.kit-rows .tone-good dd { color: var(--green); }
+.kit-rows .tone-bad dd { color: var(--tertiary); }
+.kit-rows .tone-muted dd { color: var(--muted); font-weight: 500; }
+.kit-log { padding: 15px 17px; display: grid; gap: 7px; align-content: start; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--surface-container-low); }
+.kit-log p { margin: 0; color: #46534c; font-size: 13px; line-height: 1.65; }
+.kit-log .log-good { padding: 7px 10px; border-radius: var(--r-btn); background: var(--green-wash); color: #27402f; font-weight: 600; }
+.kit-log .log-bad { padding: 7px 10px; border-radius: var(--r-btn); background: var(--tertiary-container); color: var(--tertiary); font-weight: 600; }
+.kit-log .log-pause { padding: 7px 10px; border-radius: var(--r-btn); background: var(--coral-subtle); color: #8e3520; font-weight: 600; }
+
+.kit-order { margin: 0 22px 16px; padding: 0; display: grid; gap: 8px; list-style: none; counter-reset: none; }
+.kit-order li { padding: 12px 14px; display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; align-items: center; gap: 12px; border: 1px solid var(--line); border-radius: var(--r-card); background: var(--card); }
+.kit-order li.ok { border-color: var(--green); background: var(--green-wash); }
+.kit-order-index { width: 26px; height: 26px; display: grid; place-items: center; border-radius: var(--r-dot); background: var(--surface-variant); font: 700 12px var(--font-code); }
+.kit-order li.ok .kit-order-index { background: var(--lime); color: var(--on-lime); }
+.kit-order-body strong { font-size: 14px; }
+.kit-order-body small { display: block; margin-top: 2px; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.kit-order-moves { display: flex; gap: 5px; }
+.kit-order-moves button { width: 32px; height: 32px; border: 1px solid var(--line); border-radius: var(--r-btn); background: var(--paper); cursor: pointer; font-size: 13px; }
+.kit-order-moves button:disabled { opacity: .35; cursor: not-allowed; }
+
+.kit-verdict { margin: 0 22px 18px; }
+
+
 .zero-flow { min-height: 220px; padding: 54px 24px; display: flex; align-items: center; justify-content: center; overflow-x: auto; background-image: radial-gradient(#cbd1c8 1px, transparent 1px); background-size: 18px 18px; }
 .zero-flow-part { display: flex; align-items: center; }
 .zero-flow-node { width: 112px; min-height: 94px; padding: 14px; display: grid; align-content: space-between; border: 1px solid #b8c1b9; border-radius: var(--r-card); background: var(--card); transition: .2s ease; }
@@ -982,6 +1044,10 @@ a.open-lesson-card:hover { transform: translateY(-2px); box-shadow: var(--e2); b
   .bp-from { text-align: left; }
   .bp-switches { grid-template-columns: 1fr; }
   .bp-card { flex: 1 1 100%; }
+  .kit-prompt, .kit-classify, .kit-controls, .kit-outcome, .kit-order, .kit-verdict { margin-inline: 12px; }
+  .kit-control { grid-template-columns: 1fr; gap: 6px; }
+  .kit-outcome { grid-template-columns: 1fr; }
+  .kit-slider input { max-width: none; }
   /* 术语浮层在窄屏改成底部浮条：靠词定位会顶出视口，触屏上也更难点中 */
   .term-popover {
     position: fixed;
