@@ -1,0 +1,129 @@
+<!doctype html><meta charset="utf-8"><style>
+:root{
+  --ink:#17231f; --muted:#68736d; --paper:#f2efe6; --card:#fffdf7;
+  --line:#c9cfc7; --lime:#bafa4b; --on-lime:#4d7100; --green:#355e48;
+  --coral:#ff8f72; --coral-wash:#ffece7; --tertiary:#9c432c;
+  --wash:#e8efe9; --term:#13221b; --term-ink:#e6f4ed;
+  --ui:"Inter","PingFang SC","Microsoft YaHei",sans-serif;
+  --mono:"JetBrains Mono","SFMono-Regular",Menlo,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#8b948d;font-family:var(--ui);-webkit-font-smoothing:antialiased}
+.deck{display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px}
+.card{
+  width:621px;height:828px;flex:0 0 828px;position:relative;overflow:hidden;
+  padding:56px 52px;background:var(--card);color:var(--ink);
+  display:flex;flex-direction:column;
+  background-image:radial-gradient(#e4e0d5 1px,transparent 1px);background-size:22px 22px;
+}
+.card::after{content:"";position:absolute;inset:0;border:10px solid var(--paper);pointer-events:none}
+
+/* 封面 */
+.cover{background:var(--paper);justify-content:center;background-image:none}
+.cover::after{border-color:var(--card)}
+.cover .badge{
+  position:absolute;top:56px;left:52px;padding:7px 14px;border-radius:2px;
+  background:var(--ink);color:var(--lime);font:800 17px/1 var(--mono);letter-spacing:.06em;
+}
+.cover h1{font:900 68px/1.22 var(--ui);letter-spacing:-.02em}
+.cover h1 em{font-style:normal;background:var(--lime);color:var(--on-lime);
+  padding:0 10px;border-radius:4px;box-decoration-break:clone}
+.cover .sub{margin-top:28px;font:600 25px/1.55 var(--ui);color:var(--muted)}
+.cover .footer{position:absolute;left:52px;right:52px;bottom:56px}
+
+/* 内页 */
+.kicker{display:flex;justify-content:space-between;
+  font:700 16px/1 var(--mono);letter-spacing:.1em;color:var(--muted)}
+.card h2{margin-top:30px;font:800 40px/1.35 var(--ui);letter-spacing:-.01em}
+.mark{display:inline-block;margin-right:12px;padding:5px 12px;vertical-align:6px;
+  border-radius:2px;background:var(--coral);color:#4a1a0e;font:800 17px/1 var(--ui);font-style:normal}
+.body{margin-top:26px}
+.plain{justify-content:center}
+.plain .kicker{position:absolute;top:56px;left:52px;right:52px}
+.plain h2{margin-top:0}
+.body p{font:400 25px/1.78 var(--ui);color:#2d3a34}
+.body p+p{margin-top:20px}
+.inl{padding:2px 8px;border-radius:4px;background:var(--wash);
+  font:600 22px/1 var(--mono);color:var(--green)}
+.body b{font-weight:800;color:var(--ink);
+  background:linear-gradient(transparent 62%,var(--lime) 62%)}
+pre{margin-top:32px;padding:22px 24px;border-radius:8px;background:var(--term);overflow:hidden}
+code{font:600 21px/1.7 var(--mono);color:var(--term-ink);white-space:pre}
+.tag{margin-top:26px;padding:14px 18px;border-radius:8px;background:var(--wash);
+  border-left:5px solid var(--green);font:700 22px/1.5 var(--ui);color:var(--green)}
+.warn .tag{background:var(--coral-wash);border-left-color:var(--tertiary);color:var(--tertiary)}
+
+/* 尾页 */
+.end{background:var(--paper);background-image:none}
+.end::after{border-color:var(--card)}
+.end h2{margin-top:36px}
+.end ol{margin-top:34px;list-style:none;display:flex;flex-direction:column;gap:22px}
+.end li{display:flex;gap:18px;align-items:flex-start;counter-increment:n}
+.end li::before{content:counter(n);flex:0 0 auto;width:42px;height:42px;border-radius:4px;
+  background:var(--lime);color:var(--on-lime);font:900 22px/42px var(--mono);text-align:center}
+.end li span{font:600 26px/1.6 var(--ui);padding-top:5px}
+.end ol{counter-reset:n}
+.cta{margin-top:auto;padding:24px;border-radius:8px;background:var(--ink);color:#e9f2e4;
+  font:500 22px/1.6 var(--ui);text-align:center}
+.cta b{color:var(--lime)}
+.footer{margin-top:26px;display:flex;justify-content:space-between;
+  font:700 18px/1 var(--mono);letter-spacing:.08em;color:var(--muted)}
+</style><div class="deck"><section class="card cover">
+  <div class="badge">LESSON 00 · 入门</div>
+  <h1>搭 AI Agent<br>第一步不是<br><em>写提示词</em></h1>
+  <p class="sub">LangGraph 技术栈 · 从 0 到能跑</p>
+  <div class="footer"><span>AI Agent 工程手册</span><span>8 页</span></div>
+</section>
+<section class="card ">
+  <div class="kicker"><span>LESSON 00</span><span>2 / 8</span></div>
+  <h2>先分清两件事</h2>
+  <div class="body"><p>模型负责「想」，编排器负责「流程」。</p><p>提示词写得再好，也管不了「失败了要重试几次」「这一步要不要等人批准」。那是编排器的活。</p></div>
+  
+  <div class="tag">LangGraph 就是编排器</div>
+</section>
+<section class="card ">
+  <div class="kicker"><span>LESSON 00</span><span>3 / 8</span></div>
+  <h2>LangGraph 到底是什么</h2>
+  <div class="body"><p>不是模型，不是插件，不是提示词框架。</p><p>它是一张<b>状态图</b>：你把流程画成 State、Node、Edge，它负责按图执行、保存现场、在中途停下来。</p></div>
+  <pre><code>State  运行状态
+Node   一步工作
+Edge   下一步去哪</code></pre>
+  
+</section>
+<section class="card plain">
+  <div class="kicker"><span>LESSON 00</span><span>4 / 8</span></div>
+  <h2>30 课最后做出什么</h2>
+  <div class="body"><p>一个能循环、有记忆、危险操作前会停下来等你批准的 Agent。</p><p>不是 demo，是能说清「重启之后还在不在」「重复提交会不会执行两次」的东西。</p></div>
+  
+  
+</section>
+<section class="card ">
+  <div class="kicker"><span>LESSON 00</span><span>5 / 8</span></div>
+  <h2>三个工具先装好</h2>
+  <div class="body"><p>Python 3.10+、uv、一个终端。</p><p>依赖不用一个个装，<code class="inl">uv sync</code> 一行搞定，它会自己建虚拟环境。</p></div>
+  <pre><code>python --version
+uv --version
+uv sync</code></pre>
+  
+</section>
+<section class="card ">
+  <div class="kicker"><span>LESSON 00</span><span>6 / 8</span></div>
+  <h2>前 6 课不需要 API Key</h2>
+  <div class="body"><p>课程里用一个脚本化的假模型，跑的是<b>真实的图结构</b>。</p><p>学的是编排，不是烧 token。等你真的需要模型了再接。</p></div>
+  
+  <div class="tag">省钱且可复现</div>
+</section>
+<section class="card warn plain">
+  <div class="kicker"><span>LESSON 00</span><span>7 / 8</span></div>
+  <h2><i class="mark">易踩坑</i>Key 什么时候才需要</h2>
+  <div class="body"><p>第 07 课。而且只放服务端环境变量。</p><p>绝对不要进浏览器代码，不要放 <code class="inl">NEXT_PUBLIC_</code> 开头的变量里——那等于公开发布。</p></div>
+  
+  
+</section>
+<section class="card end">
+  <div class="kicker"><span>LESSON 00</span><span>8 / 8</span></div>
+  <h2>三句话带走</h2>
+  <ol><li><span>模型负责想，LangGraph 负责流程</span></li><li><span>前 6 课不用 API Key 也能学完</span></li><li><span>Key 只放服务端，永远不进前端</span></li></ol>
+  <div class="cta">全 31 课 · 每课都有可以自己拨的互动实验<br><b>主页合集持续更新</b></div>
+  <div class="footer"><span>AI Agent 工程手册</span></div>
+</section></div>
