@@ -4,7 +4,7 @@
 > 每一项的完整需求（画什么、必须标注、不要出现、替代文本、通过条件）写在课程正文里它该出现的位置，
 > 写法规范见 [`docs/04-figure-and-ui-spec.md`](../docs/04-figure-and-ui-spec.md)。
 
-当前共 **37 张配图**（全部待制作）、**31 个互动实验**（21 个已实现，10 个待开发）。
+当前共 **37 张配图**（全部待制作）、**31 个互动实验**（26 个已实现，5 个待开发）。
 
 ## 配图
 
@@ -73,11 +73,11 @@
 | `U18-1` | 18 | 找出分岔点 | 已实现 · `apps/web/src/components/lesson-eighteen-article.tsx`（ScenarioLab） |
 | `U19-1` | 19 | 让重试变安全 | 已实现 · `apps/web/src/components/lesson-nineteen-article.tsx`（ScenarioLab） |
 | `U20-1` | 20 | 每条验收挡住哪一类事故 | 已实现 · `apps/web/src/components/lesson-twenty-article.tsx`（ClassifyLab） |
-| `U21-1` | 21 | 把六个步骤排进两层 | 待开发 · 建议 `apps/web/src/components/lesson-twentyone-lab.tsx` |
-| `U22-1` | 22 | 处理三种数量 | 待开发 · 建议 `apps/web/src/components/lesson-twentytwo-lab.tsx` |
-| `U23-1` | 23 | 找出重复的那一条 | 待开发 · 建议 `apps/web/src/components/lesson-twentythree-lab.tsx` |
-| `U24-1` | 24 | 审一份计划 | 待开发 · 建议 `apps/web/src/components/lesson-twentyfour-lab.tsx` |
-| `U25-1` | 25 | 数一数丢了什么 | 待开发 · 建议 `apps/web/src/components/lesson-twentyfive-lab.tsx` |
+| `U21-1` | 21 | 并行、失败与尽力而为 | 已实现 · `apps/web/src/components/lesson-twentyone-article.tsx`（ScenarioLab） |
+| `U22-1` | 22 | 处理三种数量 | 已实现 · `apps/web/src/components/lesson-twentytwo-article.tsx`（ScenarioLab） |
+| `U23-1` | 23 | 找出重复的那一条 | 已实现 · `apps/web/src/components/lesson-twentythree-article.tsx`（ScenarioLab） |
+| `U24-1` | 24 | 审一份计划 | 已实现 · `apps/web/src/components/lesson-twentyfour-article.tsx`（ClassifyLab） |
+| `U25-1` | 25 | 数一数丢了什么 | 已实现 · `apps/web/src/components/lesson-twentyfive-article.tsx`（ScenarioLab） |
 | `U26-1` | 26 | 三个问题，三种结果 | 待开发 · 建议 `apps/web/src/components/lesson-twentysix-lab.tsx` |
 | `U27-1` | 27 | 找出被弄坏的那一条 | 待开发 · 建议 `apps/web/src/components/lesson-twentyseven-lab.tsx` |
 | `U28-1` | 28 | 三种注入，三层防线 | 待开发 · 建议 `apps/web/src/components/lesson-twentyeight-lab.tsx` |
