@@ -433,7 +433,7 @@ Agent 完全一样。
 - [Explore the context window](https://code.claude.com/docs/en/context-window) —— 上下文塞满之后到底发生了什么（下一篇讲这个）
 - [Sub-agents](https://code.claude.com/docs/en/sub-agents) —— 子 Agent 怎么用
 
-> 上面这些官方文档已经镜像在本仓库 [`references/anthropic-claude-code/`](../../references/anthropic-claude-code/) 里，
+> 上面这些官方文档已经镜像在本仓库 [`references/anthropic-claude-code/`](../../../references/anthropic-claude-code/) 里，
 > 可以离线全文搜索，不用翻网页。
 
 ---

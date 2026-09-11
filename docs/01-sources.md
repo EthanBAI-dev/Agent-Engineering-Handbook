@@ -92,7 +92,7 @@ rg -n "context window" references/anthropic-claude-code --type md
 - **个人博客**：Simon Willison（`simonwillison.net`，追工具变更最快最准）、Hamel Husain（评估）、Eugene Yan（LLM 系统设计）、Chip Huyen（AI 工程）
 - **Newsletter / 播客**：Latent Space、The Pragmatic Engineer、Interconnects
 - **中文**：宝玉（`baoyu.io`，官方文档与长文的高质量翻译）、各厂中文技术公众号
-- **视频创作者**：见 [`05-creators.md`](05-creators.md)
+- **视频创作者**：见 [`05-creators.md`](../archive/docs/05-creators.md)
 - **论坛**：Hacker News、r/ClaudeAI、r/LocalLLaMA、各工具的 Discord
 
 > ⚠️ T3 的所有结论都要自己复现一遍才能写进文章。社区里过期和以讹传讹的内容非常多。

@@ -82,6 +82,14 @@ State 让暂停前后的节点共享同一份现场；`path` 保存准备处理�
 
 真实产品还会增加 `requested_by`、`approved_by`、`reason` 和时间戳。但这些字段属于审计与账号系统，本课先不扩展。
 
+> **配图 F04-1｜图真的停住了**
+> **形式**：带暂停态的流程图 · `assets/lessons/04-paused-graph.svg`
+> **画什么**：`START → propose → approval → report → END`，approval 变色并挂一个 ⏸ 徽标。
+> 从 approval 拉一条虚线到框外，末端是一张写着 question 与 type 的卡片。
+> **必须标注**：`next = ("approval",)`；`result` 此刻仍是空字符串；虚线标「payload 交给图外的人」。
+> **不要出现**：把暂停画成弹窗——弹窗在浏览器里，暂停在服务端的图里。
+> **替代文本**：图执行到 approval 时停住，把一个包含问题和输入类型的载荷交给外部，State 中的结果仍为空。
+
 ## interrupt 把什么交给外面
 
 审批节点这样写：
@@ -234,6 +242,22 @@ uv run python examples/04_human_in_loop.py
 ```
 
 “已删除”只是 State 中的演示文本，不代表脚本调用了文件系统删除命令。
+
+> **配图 F04-2｜副作用写在哪一侧，差一倍**
+> **形式**：对照图 · `assets/lessons/04-side-effect-placement.svg`
+> **画什么**：上下两栏，同一个 approval 节点。上栏副作用画在 interrupt 之前，标「执行 2 次」并标红；
+> 下栏画在批准之后，标「执行 1 次」。右侧用小箭头示意恢复时节点从头重跑。
+> **必须标注**：2 次与 1 次的对比；「恢复会重跑整个节点，但暂停点之前的节点不重跑」。
+> **不要出现**：暗示 LangGraph 会自动去重——它不会，这要你自己保证幂等。
+> **替代文本**：副作用写在 interrupt 之前会在恢复时执行两次，写在批准之后只执行一次。
+
+> **互动 U04-1｜批准一条，拒绝一条**
+> **状态**：已实现 · `apps/web/src/components/lesson-four-lab.tsx`
+> **用户做什么**：选一条操作和副作用位置，调用图；图暂停后点批准或拒绝。
+> **屏幕上变什么**：approval 变色挂 ⏸；State 面板显示 `next` 元组；载荷面板显示 payload；
+> 四个计数器实时更新（propose / interrupt 前 / interrupt 后 / 副作用实际发生）。
+> **通过条件**：两个 thread 分别得到「已删除 /tmp/cache」和「已取消」。
+> **小屏**：选择区与面板纵向堆叠，计数器单列，流程条横向滚动。
 
 ## 审批点应该放在哪里
 

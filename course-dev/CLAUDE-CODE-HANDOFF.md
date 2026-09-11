@@ -137,6 +137,18 @@ course-dev/30-lesson-curriculum-map.md           30 课来源与课程地图
 course-dev/conversation-log.md                  产品决策与对话记录
 ```
 
+## 4.5 配图与互动 UI 的需求在哪里
+
+00–30 每课正文里都嵌了 `> **配图 Fxx-x｜...**` 和 `> **互动 Uxx-x｜...**` 区块，
+写在它该出现的位置，包含画什么、必须标注、不要出现、替代文本、通过条件。
+
+- 总览与进度：[`course-dev/figure-and-ui-index.md`](figure-and-ui-index.md)（跑 `course-dev/scripts/build-figure-index.py` 重新生成）
+- 写法规范：[`docs/04-figure-and-ui-spec.md`](../docs/04-figure-and-ui-spec.md)
+- 配图产出放 `assets/lessons/`，源文件与导出一起入库，`make diagrams` 渲染
+
+当前 37 张配图全部待制作；31 个互动里 5 个已实现（00–04），26 个待开发。
+做完一项之后，回到正文把该区块的**形式/状态**字段改成实际路径，区块本身保留——它是验收标准。
+
 ## 5. 开发约束
 
 继续开发前先阅读：

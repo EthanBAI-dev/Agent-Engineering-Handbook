@@ -102,7 +102,7 @@ cover: ../../assets/covers/post-slug.png
 
 ## 想再深入一点
 
-- 这篇的[进阶版](deep-dive.md)
+- 这篇的[进阶版](../posts/01-agent-loop/deep-dive.md)
 - 下一篇：
 
 > 本文说法来自官方文档（[页面名](https://...)，访问于 2026-09-07）。

@@ -47,3 +47,6 @@
 - 第 05 课明确标记为编辑综合，不声称存在新的独立源码实验
 - 第 06 课起使用 `examples/_fake.py` 的脚本化模型：不需要 API Key，但图是真的在跑
 - 第 07、08 课涉及真实 API 与部署，未验证的部分在正文和 frontmatter 里都明确标注
+- 每课正文里嵌有 `> **配图 Fxx-x｜...**` 与 `> **互动 Uxx-x｜...**` 区块，写明这一处需要什么图、
+  什么交互，以及验收标准；总览见 [`course-dev/figure-and-ui-index.md`](../../course-dev/figure-and-ui-index.md)，
+  写法规范见 [`docs/04-figure-and-ui-spec.md`](../../docs/04-figure-and-ui-spec.md)
