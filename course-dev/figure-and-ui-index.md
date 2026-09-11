@@ -4,7 +4,7 @@
 > 每一项的完整需求（画什么、必须标注、不要出现、替代文本、通过条件）写在课程正文里它该出现的位置，
 > 写法规范见 [`docs/04-figure-and-ui-spec.md`](../docs/04-figure-and-ui-spec.md)。
 
-当前共 **37 张配图**（全部待制作）、**31 个互动实验**（17 个已实现，14 个待开发）。
+当前共 **37 张配图**（全部待制作）、**31 个互动实验**（21 个已实现，10 个待开发）。
 
 ## 配图
 
@@ -69,10 +69,10 @@
 | `U14-1` | 14 | 在预算内保住关键事实 | 已实现 · `apps/web/src/components/lesson-fourteen-article.tsx`（ScenarioLab） |
 | `U15-1` | 15 | 重启之后还在不在 | 已实现 · `apps/web/src/components/lesson-fifteen-article.tsx`（ScenarioLab） |
 | `U16-1` | 16 | 给八个工具分级 | 已实现 · `apps/web/src/components/lesson-sixteen-article.tsx`（ClassifyLab） |
-| `U17-1` | 17 | 三种反应 | 待开发 · 建议 `apps/web/src/components/lesson-seventeen-lab.tsx` |
-| `U18-1` | 18 | 找出分岔点 | 待开发 · 建议 `apps/web/src/components/lesson-eighteen-lab.tsx` |
-| `U19-1` | 19 | 让重试变安全 | 待开发 · 建议 `apps/web/src/components/lesson-nineteen-lab.tsx` |
-| `U20-1` | 20 | 给验收清单挑漏洞 | 待开发 · 建议 `apps/web/src/components/lesson-twenty-lab.tsx` |
+| `U17-1` | 17 | 面对同一个提案，三种反应 | 已实现 · `apps/web/src/components/lesson-seventeen-article.tsx`（ScenarioLab） |
+| `U18-1` | 18 | 找出分岔点 | 已实现 · `apps/web/src/components/lesson-eighteen-article.tsx`（ScenarioLab） |
+| `U19-1` | 19 | 让重试变安全 | 已实现 · `apps/web/src/components/lesson-nineteen-article.tsx`（ScenarioLab） |
+| `U20-1` | 20 | 每条验收挡住哪一类事故 | 已实现 · `apps/web/src/components/lesson-twenty-article.tsx`（ClassifyLab） |
 | `U21-1` | 21 | 把六个步骤排进两层 | 待开发 · 建议 `apps/web/src/components/lesson-twentyone-lab.tsx` |
 | `U22-1` | 22 | 处理三种数量 | 待开发 · 建议 `apps/web/src/components/lesson-twentytwo-lab.tsx` |
 | `U23-1` | 23 | 找出重复的那一条 | 待开发 · 建议 `apps/web/src/components/lesson-twentythree-lab.tsx` |
